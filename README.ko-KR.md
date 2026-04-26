@@ -56,7 +56,7 @@ Career-ops는 에이전트 기반으로 작동합니다: Claude Code가 Playwrig
 
 > **참고: 처음 몇 번의 평가는 정확하지 않을 수 있습니다.** 시스템이 아직 당신을 모르기 때문입니다. 이력서, 커리어 스토리, 주요 성과, 선호도, 잘하는 것, 피하고 싶은 것 등 맥락을 알려주세요. 정보를 줄수록 더 정확해집니다. 새로운 리크루터를 온보딩한다고 생각하세요: 첫 주는 당신을 파악하는 시간이고, 그 이후부터 진가를 발휘합니다.
 
-740개 이상의 채용 공고를 평가하고, 100개 이상의 맞춤 이력서를 생성하여, Head of Applied AI 포지션에 합격한 사람이 직접 만들었습니다. [전체 케이스 스터디 읽기](https://santifer.io/career-ops-system).
+740개 이상의 채용 공고를 평가하고, 100개 이상의 맞춤 이력서를 생성하여, Head of Applied AI 포지션에 합격한 사람이 직접 만들었습니다. [전체 케이스 스터디 읽기](https://santifer.io/career-system).
 
 ## 주요 기능
 
@@ -77,8 +77,8 @@ Career-ops는 에이전트 기반으로 작동합니다: Claude Code가 Playwrig
 
 ```bash
 # 1. 클론 및 설치
-git clone https://github.com/santifer/career-ops.git
-cd career-ops && npm install
+git clone https://github.com/santifer/career.git
+cd career && npm install
 npx playwright install chromium   # PDF 렌더링을 위한 브라우저 엔진 설치
 
 # 2. 설정 확인
@@ -101,7 +101,7 @@ claude   # 이 디렉토리에서 Claude Code 실행
 # "Update my profile with this CV I'm pasting"
 
 # 6. 사용 시작
-# 채용 공고 URL을 붙여넣거나 /career-ops 실행
+# 채용 공고 URL을 붙여넣거나 /career 실행
 ```
 
 > **이 시스템은 Claude가 직접 커스터마이즈하도록 설계되었습니다.** 모드, 아키타입, 스코어링 가중치, 협상 스크립트 -- 그냥 요청하세요. Claude가 사용하는 파일을 직접 읽기 때문에, 무엇을 수정해야 하는지 정확히 알고 있습니다.
@@ -113,21 +113,21 @@ claude   # 이 디렉토리에서 Claude Code 실행
 Career-ops는 다양한 모드를 가진 하나의 슬래시 커맨드입니다:
 
 ```
-/career-ops                → 사용 가능한 모든 명령어 표시
-/career-ops {JD 붙여넣기}  → 전체 자동 파이프라인 (평가 + PDF + 트래커)
-/career-ops scan           → 포털에서 새 공고 스캔
-/career-ops pdf            → ATS 최적화 이력서 생성
-/career-ops batch          → 여러 공고 일괄 평가
-/career-ops tracker        → 지원 현황 확인
-/career-ops apply          → AI로 지원서 양식 작성
-/career-ops pipeline       → 대기 중인 URL 처리
-/career-ops contacto       → LinkedIn 아웃리치 메시지
-/career-ops deep           → 기업 심층 리서치
-/career-ops training       → 교육 및 자격증 가치 평가
-/career-ops project        → 포트폴리오 프로젝트 평가
+/career                → 사용 가능한 모든 명령어 표시
+/career {JD 붙여넣기}  → 전체 자동 파이프라인 (평가 + PDF + 트래커)
+/career scan           → 포털에서 새 공고 스캔
+/career pdf            → ATS 최적화 이력서 생성
+/career batch          → 여러 공고 일괄 평가
+/career tracker        → 지원 현황 확인
+/career apply          → AI로 지원서 양식 작성
+/career pipeline       → 대기 중인 URL 처리
+/career contacto       → LinkedIn 아웃리치 메시지
+/career deep           → 기업 심층 리서치
+/career training       → 교육 및 자격증 가치 평가
+/career project        → 포트폴리오 프로젝트 평가
 ```
 
-채용 공고 URL이나 설명을 바로 붙여넣어도 됩니다 -- career-ops가 자동으로 감지하여 전체 파이프라인을 실행합니다.
+채용 공고 URL이나 설명을 바로 붙여넣어도 됩니다 -- career가 자동으로 감지하여 전체 파이프라인을 실행합니다.
 
 ## 작동 원리
 
@@ -180,7 +180,7 @@ go build -o career-dashboard .
 ## 프로젝트 구조
 
 ```
-career-ops/
+career/
 ├── CLAUDE.md                    # 에이전트 지시사항
 ├── cv.md                        # 내 이력서 (직접 생성)
 ├── article-digest.md            # 주요 성과 정리 (선택)
@@ -229,25 +229,25 @@ career-ops/
 
 ## 저자 소개
 
-Santiago입니다 -- Head of Applied AI, 전직 창업자 (직접 사업을 만들고 매각했으며, 아직도 제 이름으로 운영되고 있습니다). 제 취업 활동을 관리하기 위해 career-ops를 만들었습니다. 효과가 있었습니다: 이 시스템으로 현재 포지션에 합격했습니다.
+Santiago입니다 -- Head of Applied AI, 전직 창업자 (직접 사업을 만들고 매각했으며, 아직도 제 이름으로 운영되고 있습니다). 제 취업 활동을 관리하기 위해 career를 만들었습니다. 효과가 있었습니다: 이 시스템으로 현재 포지션에 합격했습니다.
 
 포트폴리오 및 기타 오픈소스 프로젝트 → [santifer.io](https://santifer.io)
 
-☕ career-ops가 취업 활동에 도움이 되었다면 [커피 한 잔 사주기](https://buymeacoffee.com/santifer).
+☕ career가 취업 활동에 도움이 되었다면 [커피 한 잔 사주기](https://buymeacoffee.com/santifer).
 
 ## Star History
 
-<a href="https://www.star-history.com/?repos=santifer%2Fcareer-ops&type=timeline&legend=top-left">
+<a href="https://www.star-history.com/?repos=santifer%2Fcareer&type=timeline&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=santifer/career-ops&type=timeline&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=santifer/career-ops&type=timeline&legend=top-left" />
-   <img alt="Star History 차트" src="https://api.star-history.com/chart?repos=santifer/career-ops&type=timeline&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=santifer/career&type=timeline&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=santifer/career&type=timeline&legend=top-left" />
+   <img alt="Star History 차트" src="https://api.star-history.com/chart?repos=santifer/career&type=timeline&legend=top-left" />
  </picture>
 </a>
 
 ## 면책 조항
 
-**career-ops는 로컬 오픈소스 도구이며, 별도의 호스팅 서비스가 아닙니다.** 이 소프트웨어를 사용함으로써 다음 사항에 동의하는 것으로 간주됩니다:
+**career는 로컬 오픈소스 도구이며, 별도의 호스팅 서비스가 아닙니다.** 이 소프트웨어를 사용함으로써 다음 사항에 동의하는 것으로 간주됩니다:
 
 1. **데이터 주권:** 모든 데이터는 사용자의 로컬 머신에 머물며, 선택한 AI 프로바이더와 직접 통신합니다. 이력서, 연락처, 개인정보는 사용자의 컴퓨터에 저장되며, 선택한 AI 제공사 (Anthropic, OpenAI 등)에게만 직접 전송됩니다. 저희는 어떤 데이터도 수집, 저장, 접근하지 않습니다.
 2. **AI 제어는 사용자 책임입니다.** 기본 프롬프트는 AI가 지원서를 자동 제출하지 않도록 설정되어 있으나, AI 모델은 예측 불가능하게 동작할 수 있습니다. 프롬프트를 수정하거나 다른 모델을 사용하는 경우 사용자의 책임입니다. **제출 전에 항상 AI가 생성한 콘텐츠의 정확성을 확인하세요.**

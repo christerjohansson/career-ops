@@ -1,6 +1,6 @@
 # Modo: batch-match — Bulk Candidate Matching
 
-Cuando el usuario ejecuta `/career-ops batch-match`, procesar todos los jobs en `data/jobs/` y generar matching reports para cada uno.
+Cuando el usuario ejecuta `/career batch-match`, procesar todos los jobs en `data/jobs/` y generar matching reports para cada uno.
 
 ## Process Flow
 

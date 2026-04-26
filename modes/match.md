@@ -1,6 +1,6 @@
 # Modo: match — Interactive Candidate Matching
 
-Cuando el usuario ejecuta `/career-ops match {job-slug}` o `/career-ops match --candidate {slug}`, ejecutar matching interactivo.
+Cuando el usuario ejecuta `/career match {job-slug}` o `/career match --candidate {slug}`, ejecutar matching interactivo.
 
 ## Input Handling
 

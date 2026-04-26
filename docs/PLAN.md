@@ -3,7 +3,7 @@
 
 ## Context
 
-**Problem:** The current career-ops system is single-candidate by design -- one CV, one profile, one user. A consulting firm needs to match _multiple_ consultants against incoming client project requirements.
+**Problem:** The current career system is single-candidate by design -- one CV, one profile, one user. A consulting firm needs to match _multiple_ consultants against incoming client project requirements.
 
 **Intended outcome:** A refactored system that can:
 
@@ -127,7 +127,7 @@ Primary matching mode:
 
 - Input: Job slug or candidate slug
 - Output: Ranked match report with scores, gaps, recommendations
-- Triggered by: `/career-ops match {job-slug}` or `/career-ops match --candidate {slug}`
+- Triggered by: `/career match {job-slug}` or `/career match --candidate {slug}`
 
 ### `modes/batch-match.md` (NEW)
 
@@ -135,7 +135,7 @@ Bulk matching for when new jobs arrive:
 
 - Input: `data/jobs/` with new submissions
 - Output: For each job, ranked candidate list
-- Triggered by: `/career-ops batch-match`
+- Triggered by: `/career batch-match`
 
 ---
 
@@ -180,8 +180,8 @@ Ingests a raw JD (text/URL) and creates structured `jobs/{slug}.yml`:
     - Structured: Direct YAML creation from form input
     - Free-form: LLM-assisted extraction from raw JD text
 4. **Create `scripts/match-candidates.mjs`** -- Core matching engine with Block B-style parallel scoring
-5. **Create `modes/match.md`** -- Interactive matching mode (`/career-ops match`)
-6. **Create `modes/batch-match.md`** -- Bulk matching mode (`/career-ops batch-match`)
+5. **Create `modes/match.md`** -- Interactive matching mode (`/career match`)
+6. **Create `modes/batch-match.md`** -- Bulk matching mode (`/career batch-match`)
 7. **Update `DATA_CONTRACT.md`** -- Document new directories
 8. **Update `CLAUDE.md`** -- Document consulting mode commands
 9. **Test** -- Run matching against 3-5 test candidates + jobs
@@ -206,6 +206,6 @@ Ingests a raw JD (text/URL) and creates structured `jobs/{slug}.yml`:
 ## Verification
 
 1. **Unit test:** Run `scripts/match-candidates.mjs` with 3 test candidates + 2 test jobs -- verify ranked output
-2. **Mode test:** `/career-ops match {job-slug}` should return ranked candidate list with scores
-3. **Reverse test:** `/career-ops match --candidate {slug}` should return ranked job list
+2. **Mode test:** `/career match {job-slug}` should return ranked candidate list with scores
+3. **Reverse test:** `/career match --candidate {slug}` should return ranked job list
 4. **Backward compat:** Existing single-user evaluation (`oferta`) still works unchanged

@@ -49,13 +49,13 @@ Career-Opsは、あらゆるAIコーディングCLIを本格的な求職コマ�
 - **バッチ処理** -- サブエージェントで10件以上のオファーを並列評価
 - **すべてを一元管理** -- 整合性チェック付きの単一のデータソース
 
-> **重要: これは「とにかく数を撃つ」ツールではありません。** career-opsはフィルターです -- 何百もの求人の中から、あなたの時間を割く価値のある数件を見つけ出すためのツールです。本システムは4.0/5未満のスコアの求人への応募を強く非推奨としています。あなたの時間もリクルーターの時間も貴重です。送信前に必ず内容を確認してください。
+> **重要: これは「とにかく数を撃つ」ツールではありません。** careerはフィルターです -- 何百もの求人の中から、あなたの時間を割く価値のある数件を見つけ出すためのツールです。本システムは4.0/5未満のスコアの求人への応募を強く非推奨としています。あなたの時間もリクルーターの時間も貴重です。送信前に必ず内容を確認してください。
 
-career-opsはエージェンティックです: Claude CodeがPlaywrightで求人ページを操作し、（キーワードマッチではなく）あなたのCVと求人票を突き合わせて適合度を推論し、求人ごとにレジュメを最適化します。
+careerはエージェンティックです: Claude CodeがPlaywrightで求人ページを操作し、（キーワードマッチではなく）あなたのCVと求人票を突き合わせて適合度を推論し、求人ごとにレジュメを最適化します。
 
 > **ご注意: 最初の評価はあまり良くありません。** システムはまだあなたのことを知らないからです。コンテキストを与えてください -- CV、キャリアストーリー、実績の裏付け、好み、得意なこと、避けたいこと。育てれば育てるほど精度が上がります。新人リクルーターをオンボーディングするのと同じです: 最初の1週間はあなたについて学ぶ必要があり、その後かけがえのない存在になります。
 
-このシステムは、740件以上の求人を評価し、100件以上のテーラーメイドCVを生成し、Head of Applied AIのポジションを獲得した人物によって作られました。[詳細なケーススタディを読む](https://santifer.io/career-ops-system)。
+このシステムは、740件以上の求人を評価し、100件以上のテーラーメイドCVを生成し、Head of Applied AIのポジションを獲得した人物によって作られました。[詳細なケーススタディを読む](https://santifer.io/career-system)。
 
 ## 機能
 
@@ -76,8 +76,8 @@ career-opsはエージェンティックです: Claude CodeがPlaywrightで求�
 
 ```bash
 # 1. クローンとインストール
-git clone https://github.com/santifer/career-ops.git
-cd career-ops && npm install
+git clone https://github.com/santifer/career.git
+cd career && npm install
 npx playwright install chromium   # PDF生成に必要
 
 # 2. セットアップ確認
@@ -100,7 +100,7 @@ claude   # このディレクトリでClaude Codeを起動
 # 「貼り付けるこのCVでプロフィールを更新して」
 
 # 6. 使い始める
-# 求人URLを貼るか、/career-opsを実行
+# 求人URLを貼るか、/careerを実行
 ```
 
 > **このシステムはClaude自身がカスタマイズする前提で設計されています。** モード、アーキタイプ、スコアリング重み、交渉スクリプト -- すべてClaudeに依頼すれば変更してくれます。Claudeは自分が使うのと同じファイルを読むので、どこを編集すればよいか正確に把握しています。
@@ -109,24 +109,24 @@ claude   # このディレクトリでClaude Codeを起動
 
 ## 使い方
 
-career-opsは複数のモードを持つ単一のスラッシュコマンドです:
+careerは複数のモードを持つ単一のスラッシュコマンドです:
 
 ```
-/career-ops                → 利用可能なすべてのコマンドを表示
-/career-ops {求人票を貼る}  → 完全自動パイプライン（評価 + PDF + トラッカー）
-/career-ops scan           → ポータルをスキャンして新しい求人を探す
-/career-ops pdf            → ATS最適化CVを生成
-/career-ops batch          → 複数オファーをバッチ評価
-/career-ops tracker        → 応募ステータスを表示
-/career-ops apply          → AIで応募フォームを入力
-/career-ops pipeline       → 保留中のURLを処理
-/career-ops contacto       → LinkedInアウトリーチメッセージ
-/career-ops deep           → 企業の深掘りリサーチ
-/career-ops training       → コース/資格を評価
-/career-ops project        → ポートフォリオプロジェクトを評価
+/career                → 利用可能なすべてのコマンドを表示
+/career {求人票を貼る}  → 完全自動パイプライン（評価 + PDF + トラッカー）
+/career scan           → ポータルをスキャンして新しい求人を探す
+/career pdf            → ATS最適化CVを生成
+/career batch          → 複数オファーをバッチ評価
+/career tracker        → 応募ステータスを表示
+/career apply          → AIで応募フォームを入力
+/career pipeline       → 保留中のURLを処理
+/career contacto       → LinkedInアウトリーチメッセージ
+/career deep           → 企業の深掘りリサーチ
+/career training       → コース/資格を評価
+/career project        → ポートフォリオプロジェクトを評価
 ```
 
-または、単に求人URLや記述を直接貼り付けるだけ -- career-opsが自動検知してフルパイプラインを実行します。
+または、単に求人URLや記述を直接貼り付けるだけ -- careerが自動検知してフルパイプラインを実行します。
 
 ## 仕組み
 
@@ -180,7 +180,7 @@ go build -o career-dashboard .
 ## プロジェクト構成
 
 ```
-career-ops/
+career/
 ├── CLAUDE.md                    # エージェントの指示
 ├── cv.md                        # あなたのCV（自分で作成）
 ├── article-digest.md            # あなたの実績の裏付け（任意）
@@ -229,25 +229,25 @@ career-ops/
 
 ## 作者について
 
-Santiagoです -- Head of Applied AI、元創業者（自分の名前を冠した事業を立ち上げて売却、その事業は今も稼働中）。career-opsは自分自身の求職活動を管理するために作りました。結果、現職を獲得することに成功しました。
+Santiagoです -- Head of Applied AI、元創業者（自分の名前を冠した事業を立ち上げて売却、その事業は今も稼働中）。careerは自分自身の求職活動を管理するために作りました。結果、現職を獲得することに成功しました。
 
 ポートフォリオと他のオープンソースプロジェクト → [santifer.io](https://santifer.io)
 
-☕ career-opsが求職活動に役立ったら [コーヒーをおごる](https://buymeacoffee.com/santifer)
+☕ careerが求職活動に役立ったら [コーヒーをおごる](https://buymeacoffee.com/santifer)
 
 ## Star History
 
-<a href="https://www.star-history.com/?repos=santifer%2Fcareer-ops&type=timeline&legend=top-left">
+<a href="https://www.star-history.com/?repos=santifer%2Fcareer&type=timeline&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=santifer/career-ops&type=timeline&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=santifer/career-ops&type=timeline&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=santifer/career-ops&type=timeline&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=santifer/career&type=timeline&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=santifer/career&type=timeline&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=santifer/career&type=timeline&legend=top-left" />
  </picture>
 </a>
 
 ## 免責事項
 
-**career-opsはローカルで動作するオープンソースツールです — ホステッドサービスではありません。** 本ソフトウェアを使用することにより、以下を承諾したものとみなされます:
+**careerはローカルで動作するオープンソースツールです — ホステッドサービスではありません。** 本ソフトウェアを使用することにより、以下を承諾したものとみなされます:
 
 1. **データはあなたが管理します。** CV、連絡先、個人情報はあなたのマシン上にとどまり、あなたが選択したAIプロバイダー（Anthropic、OpenAIなど）に直接送信されます。当方はあなたのデータを収集、保存、アクセスすることは一切ありません。
 2. **AIはあなたが管理します。** デフォルトのプロンプトはAIに応募の自動送信を行わないよう指示していますが、AIモデルは予測できない挙動をする場合があります。プロンプトを変更したり、別のモデルを使用する場合は自己責任でお願いします。**送信前に必ずAI生成コンテンツの正確性を確認してください。**

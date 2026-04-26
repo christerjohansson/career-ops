@@ -32,16 +32,16 @@ node update-system.mjs check
 
 Parse the JSON output:
 - `{"status": "update-available", "local": "1.0.0", "remote": "1.1.0", "changelog": "..."}` → tell the user:
-  > "career-ops update available (v{local} → v{remote}). Your data (CV, profile, tracker, reports) will NOT be touched. Want me to update?"
+  > "career update available (v{local} → v{remote}). Your data (CV, profile, tracker, reports) will NOT be touched. Want me to update?"
   If yes → run `node update-system.mjs apply`. If no → run `node update-system.mjs dismiss`.
 - `{"status": "up-to-date"}` → say nothing
 - `{"status": "dismissed"}` → say nothing
 - `{"status": "offline"}` → say nothing
 
-The user can also say "check for updates" or "update career-ops" at any time to force a check.
+The user can also say "check for updates" or "update career" at any time to force a check.
 To rollback: `node update-system.mjs rollback`
 
-## What is career-ops
+## What is career
 
 AI-powered job search automation built on Claude Code: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing.
 
@@ -72,25 +72,25 @@ When using [OpenCode](https://opencode.ai), the following slash commands are ava
 
 | Command | Claude Code Equivalent | Description |
 |---------|------------------------|-------------|
-| `/career-ops` | `/career-ops` | Show menu or evaluate JD with args |
-| `/career-ops-pipeline` | `/career-ops pipeline` | Process pending URLs from inbox |
-| `/career-ops-evaluate` | `/career-ops oferta` | Evaluate job offer (A-F scoring) |
-| `/career-ops-compare` | `/career-ops ofertas` | Compare and rank multiple offers |
-| `/career-ops-contact` | `/career-ops contacto` | LinkedIn outreach (find contacts + draft) |
-| `/career-ops-deep` | `/career-ops deep` | Deep company research |
-| `/career-ops-pdf` | `/career-ops pdf` | Generate ATS-optimized CV |
-| `/career-ops-training` | `/career-ops training` | Evaluate course/cert against goals |
-| `/career-ops-project` | `/career-ops project` | Evaluate portfolio project idea |
-| `/career-ops-tracker` | `/career-ops tracker` | Application status overview |
-| `/career-ops-apply` | `/career-ops apply` | Live application assistant |
-| `/career-ops-scan` | `/career-ops scan` | Scan portals for new offers |
-| `/career-ops-batch` | `/career-ops batch` | Batch processing with parallel workers |
-| `/career-ops-match` | `/career-ops match {job-slug}` | Interactive candidate matching |
-| `/career-ops-batch-match` | `/career-ops batch-match` | Bulk matching for all jobs |
-| `/career-ops-patterns` | `/career-ops patterns` | Analyze rejection patterns and improve targeting |
-| `/career-ops-followup` | `/career-ops followup` | Follow-up cadence tracker |
+| `/career` | `/career` | Show menu or evaluate JD with args |
+| `/career-pipeline` | `/career pipeline` | Process pending URLs from inbox |
+| `/career-evaluate` | `/career oferta` | Evaluate job offer (A-F scoring) |
+| `/career-compare` | `/career ofertas` | Compare and rank multiple offers |
+| `/career-contact` | `/career contacto` | LinkedIn outreach (find contacts + draft) |
+| `/career-deep` | `/career deep` | Deep company research |
+| `/career-pdf` | `/career pdf` | Generate ATS-optimized CV |
+| `/career-training` | `/career training` | Evaluate course/cert against goals |
+| `/career-project` | `/career project` | Evaluate portfolio project idea |
+| `/career-tracker` | `/career tracker` | Application status overview |
+| `/career-apply` | `/career apply` | Live application assistant |
+| `/career-scan` | `/career scan` | Scan portals for new offers |
+| `/career-batch` | `/career batch` | Batch processing with parallel workers |
+| `/career-match` | `/career match {job-slug}` | Interactive candidate matching |
+| `/career-batch-match` | `/career batch-match` | Bulk matching for all jobs |
+| `/career-patterns` | `/career patterns` | Analyze rejection patterns and improve targeting |
+| `/career-followup` | `/career followup` | Follow-up cadence tracker |
 
-**Note:** OpenCode commands invoke the same `.claude/skills/career-ops/SKILL.md` skill used by Claude Code. The `modes/*` files are shared between both platforms.
+**Note:** OpenCode commands invoke the same `.claude/skills/career/SKILL.md` skill used by Claude Code. The `modes/*` files are shared between both platforms.
 
 ### First Run — Onboarding (IMPORTANT)
 
@@ -164,8 +164,8 @@ Store any insights the user shares in `config/profile.yml` (under narrative), `m
 Once all files exist, confirm:
 > "You're all set! You can now:
 > - Paste a job URL to evaluate it
-> - Run `/career-ops scan` (or `/career-ops-scan` if using OpenCode) to search portals
-> - Run `/career-ops` to see all commands
+> - Run `/career scan` (or `/career-scan` if using OpenCode) to search portals
+> - Run `/career` to see all commands
 >
 > Everything is customizable — just ask me to change anything.
 >
@@ -174,7 +174,7 @@ Once all files exist, confirm:
 Then suggest automation:
 > "Want me to scan for new offers automatically? I can set up a recurring scan every few days so you don't miss anything. Just say 'scan every 3 days' and I'll configure it."
 
-If the user accepts, use the `/loop` or `/schedule` skill (if available) to set up a recurring `/career-ops scan` (or `/career-ops-scan` if using OpenCode). If those aren't available, suggest adding a cron job or remind them to run `/career-ops scan` (or `/career-ops-scan` if using OpenCode) periodically.
+If the user accepts, use the `/loop` or `/schedule` skill (if available) to set up a recurring `/career scan` (or `/career-scan` if using OpenCode). If those aren't available, suggest adding a cron job or remind them to run `/career scan` (or `/career-scan` if using OpenCode) periodically.
 
 ### Personalization
 
