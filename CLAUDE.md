@@ -85,6 +85,8 @@ When using [OpenCode](https://opencode.ai), the following slash commands are ava
 | `/career-ops-apply` | `/career-ops apply` | Live application assistant |
 | `/career-ops-scan` | `/career-ops scan` | Scan portals for new offers |
 | `/career-ops-batch` | `/career-ops batch` | Batch processing with parallel workers |
+| `/career-ops-match` | `/career-ops match {job-slug}` | Interactive candidate matching |
+| `/career-ops-batch-match` | `/career-ops batch-match` | Bulk matching for all jobs |
 | `/career-ops-patterns` | `/career-ops patterns` | Analyze rejection patterns and improve targeting |
 | `/career-ops-followup` | `/career-ops followup` | Follow-up cadence tracker |
 

@@ -1,0 +1,18 @@
+title: "Senior Data Scientist"
+company: "DataTech Solutions"
+client_slug: "datatech"
+requirements:
+  - "Python programming"
+  - "Machine learning algorithms"
+  - "Statistical analysis"
+  - "SQL databases"
+nice_to_haves:
+  - "Big data tools (Spark, Hadoop)"
+  - "Cloud platforms (AWS, Azure)"
+archetype: "AI Platform"
+budget_range: "$140-180/hr"
+clearance_required: []
+visa_required: false
+domain: "data analytics"
+description_raw: "Looking for a Senior Data Scientist to lead our analytics initiatives. Must have strong Python and ML skills, experience with statistical modeling and SQL."
+status: open

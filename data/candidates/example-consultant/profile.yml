@@ -1,0 +1,14 @@
+full_name: "John Doe"
+email: "john.doe@example.com"
+location: "San Francisco, CA"
+
+archetypes:
+  - "AI Platform"
+  - "LLMOps"
+
+narrative: "Experienced AI engineer focused on building scalable ML platforms and deploying production AI systems."
+
+comp_range:
+  min: 150000
+  max: 220000
+  currency: USD

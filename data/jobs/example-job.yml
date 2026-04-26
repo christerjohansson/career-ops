@@ -1,0 +1,18 @@
+title: "Senior AI Platform Engineer"
+company: "TechCorp Inc."
+client_slug: "techcorp"
+requirements:
+  - "Python programming"
+  - "Machine learning frameworks (TensorFlow, PyTorch)"
+  - "Cloud platforms (AWS, GCP)"
+  - "API development"
+nice_to_haves:
+  - "Kubernetes experience"
+  - "MLOps tools"
+archetype: "AI Platform"
+budget_range: "$160-220/hr"
+clearance_required: []
+visa_required: false
+domain: "technology"
+description_raw: "We are looking for a Senior AI Platform Engineer to join our team. The ideal candidate will have strong experience in Python, ML frameworks, and cloud platforms. Experience with API development and container orchestration is a plus."
+status: open

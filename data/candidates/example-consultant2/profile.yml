@@ -1,0 +1,14 @@
+full_name: "Jane Smith"
+email: "jane.smith@example.com"
+location: "New York, NY"
+
+archetypes:
+  - "AI Platform"
+  - "Transformation"
+
+narrative: "Data scientist specializing in predictive modeling and business intelligence for enterprise clients."
+
+comp_range:
+  min: 140000
+  max: 200000
+  currency: USD
