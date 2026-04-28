@@ -3,7 +3,7 @@ name: career
 description: AI job search command center -- evaluate offers, generate CVs, scan portals, track applications
 user_invocable: true
 args: mode
-argument-hint: "[scan | deep | pdf | oferta | ofertas | apply | batch | tracker | pipeline | contacto | training | project | interview-prep | update]"
+argument-hint: "[scan | deep | pdf | oferta | ofertas | apply | batch | tracker | pipeline | contacto | training | project | job | interview-prep | update]"
 ---
 
 # career -- Router
@@ -30,6 +30,7 @@ Determine the mode from `{{mode}}`:
 | `batch` | `batch` |
 | `patterns` | `patterns` |
 | `followup` | `followup` |
+| `job` | `job` |
 
 **Auto-pipeline detection:** If `{{mode}}` is not a known sub-command AND contains JD text (keywords: "responsibilities", "requirements", "qualifications", "about the role", "we're looking for", company name + role) or a URL to a JD, execute `auto-pipeline`.
 
@@ -60,6 +61,7 @@ Available commands:
   /career batch     → Batch processing with parallel workers
   /career patterns  → Analyze rejection patterns and improve targeting
   /career followup  → Follow-up cadence tracker: flag overdue, generate drafts
+  /career job       → INGEST: create structured job from text or file (data/jobs/)
 
 Inbox: add URLs to data/pipeline.md → /career pipeline
 Or paste a JD directly to run the full pipeline.

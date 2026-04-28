@@ -1,0 +1,26 @@
+title: "Tech Lead"
+company: "Västtrafik"
+client_slug: "vasttrafik"
+requirements:
+  - "At least 15 years of experience as a software developer"
+  - "At least 10 years of experience with agile methods and working in teams that handle both development and operations"
+  - "Experience developing larger business‑critical systems with delivery pipelines based on GitHub Enterprise and Kubernetes"
+  - "At least 3 years of experience with Blazor and strong skills in secure software development"
+  - "Domain knowledge in ticketing systems for public transport"
+  - "Experience leading and coaching teams and acting as a mentor"
+  - "Comfortable working with business processes, communicating with customers, and taking responsibility in customer-facing situations"
+nice_to_haves:
+  - "Experience with Angular, TypeScript, HTML, SCSS"
+  - "Experience with SQL Server and SQLite"
+  - "Experience with Quartz.NET and Hangfire for scheduling"
+  - "Experience with Docker, Kubernetes, OpenShift"
+  - "Experience with GitHub Enterprise, including Advanced Security and Copilot"
+  - "Experience with AMQP 1.0 queues, Loki, Grafana"
+  - "Scrum certification"
+archetype: "AI Solutions Architect"
+budget_range: "Not specified"
+clearance_required: []
+visa_required: false
+domain: "Public Transport Ticketing Systems"
+description_raw: "Experienced software developer to strengthen the team that develops and maintains Västtrafik’s School Portal and Business Portal. These systems are central to giving corporate customers a smooth experience and supporting administrators in managing school travel cards for students. Role involves working with modern technologies (.NET, Blazor, Kubernetes, GitHub Enterprise) and leading/coaching teams."
+status: open
