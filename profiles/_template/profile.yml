@@ -1,0 +1,33 @@
+candidate:
+  full_name: "Name"
+  email: "email@example.com"
+  location: "City, Country"
+  linkedin: ""
+  github: ""
+
+target_roles:
+  primary:
+    - "Role 1"
+  archetypes:
+    - name: "Archetype 1"
+      level: "Senior"
+      fit: "primary"
+      track: "engineering"
+      sell_when: "JD says X"
+
+narrative:
+  headline: "One-line headline"
+  exit_story: "Why I am looking"
+  superpowers:
+    - "Skill 1"
+  proof_points:
+    - name: "Project 1"
+      hero_metric: "X% improvement"
+
+compensation:
+  target_range: "Currency Range"
+  currency: "Currency"
+
+location:
+  country: "Country"
+  timezone: "UTC"

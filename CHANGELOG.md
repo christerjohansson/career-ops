@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.0.0] - 2026-04-28
+
+### Major Refactoring: Multi-Profile Architecture
+
+- **Profile Layer**: Moved all user-specific data (CV, profile config, evaluation reports, and generated PDFs) into individual folders under `profiles/`.
+- **Global Layer**: Retained `data/applications.md` at the root as a global tracker, updated with a new `Profile` column to distinguish entries between candidates.
+- **Profile Template**: Created `profiles/_template/` to allow easy creation of new profiles.
+- **System Updates**: `cv-sync-check.mjs`, `merge-tracker.mjs`, and `verify-pipeline.mjs` are now profile-aware.
+- **Data Contract**: Updated `CLAUDE.md` to define the Global vs. Profile layer boundaries.
+
 ## [1.5.0](https://github.com/santifer/career/compare/v1.4.0...v1.5.0) (2026-04-14)
 
 

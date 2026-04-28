@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christer Johansson — CV</title>
+<style>
+  @font-face {
+    font-family: 'Space Grotesk';
+    src: url('./fonts/space-grotesk-latin.woff2') format('woff2');
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('./fonts/dm-sans-latin.woff2') format('woff2');
+    font-weight: 100 1000;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #1a1a2e;
+    background: #ffffff;
+    padding: 0;
+    margin: 0;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 2px 0;
+  }
+
+  /* === HEADER === */
+  .header {
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+
+  .header-gradient {
+    height: 2px;
+    background: linear-gradient(to right, hsl(187,74%,32%), hsl(270,70%,45%));
+    border-radius: 1px;
+    margin-bottom: 10px;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    line-height: 1.4;
+    color: #555;
+  }
+
+  .contact-row a {
+    color: #555;
+    text-decoration: none;
+  }
+
+  .contact-row .separator {
+    color: #ccc;
+  }
+
+  /* === SECTIONS === */
+  .section {
+    margin-bottom: 18px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: hsl(187, 74%, 32%);
+    border-bottom: 1.5px solid #e2e2e2;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .summary-text {
+    font-size: 11px;
+    line-height: 1.7;
+    color: #2f2f2f;
+  }
+
+  a {
+    white-space: nowrap;
+  }
+
+  /* === CORE COMPETENCIES === */
+  .competencies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .competency-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: hsl(187, 74%, 28%);
+    background: hsl(187, 40%, 95%);
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid hsl(187, 40%, 88%);
+  }
+
+  /* === WORK EXPERIENCE === */
+  .job {
+    margin-bottom: 14px;
+  }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .job-company {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: hsl(270, 70%, 45%);
+  }
+
+  .job-period {
+    font-size: 10.5px;
+    color: #777;
+    white-space: nowrap;
+  }
+
+  .job-role {
+    font-size: 11px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+  }
+
+  .job-location {
+    font-size: 10px;
+    color: #888;
+  }
+
+  .job ul {
+    padding-left: 18px;
+    margin-top: 6px;
+  }
+
+  .job li {
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  .job li strong {
+    font-weight: 600;
+  }
+
+  /* === PROJECTS === */
+  .project {
+    margin-bottom: 12px;
+  }
+
+  .project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: hsl(270, 70%, 45%);
+  }
+
+  .project-badge {
+    font-size: 9px;
+    font-weight: 500;
+    color: hsl(187, 74%, 32%);
+    background: hsl(187, 40%, 95%);
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-left: 6px;
+  }
+
+  .project-desc {
+    font-size: 10.5px;
+    color: #444;
+    margin-top: 3px;
+    line-height: 1.55;
+  }
+
+  .project-tech {
+    font-size: 9.5px;
+    color: #888;
+    margin-top: 3px;
+  }
+
+  /* === EDUCATION === */
+  .edu-item {
+    margin-bottom: 8px;
+  }
+
+  .edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .edu-title {
+    font-weight: 600;
+    font-size: 11px;
+    color: #333;
+  }
+
+  .edu-org {
+    color: hsl(270, 70%, 45%);
+    font-weight: 500;
+  }
+
+  .edu-year {
+    font-size: 10px;
+    color: #777;
+    white-space: nowrap;
+  }
+
+  /* === CERTIFICATIONS === */
+  .cert-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .cert-title {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .cert-org {
+    color: hsl(270, 70%, 45%);
+  }
+
+  .cert-year {
+    font-size: 10px;
+    color: #777;
+    white-space: nowrap;
+  }
+
+  /* === SKILLS === */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+  }
+
+  .skill-item {
+    font-size: 10.5px;
+    color: #444;
+  }
+
+  .skill-category {
+    font-weight: 600;
+    color: #333;
+    font-size: 10.5px;
+  }
+
+  @media print {
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      padding: 0;
+    }
+  }
+
+  .avoid-break, .job, .project, .edu-item, .cert-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header avoid-break">
+    <h1>Christer Johansson</h1>
+    <div class="header-gradient"></div>
+    <div class="contact-row">
+      <span>+46 722 010 620</span>
+      <span class="separator">|</span>
+      <span>christer.johansson@stenungsund.nu</span>
+      <span class="separator">|</span>
+      <a href="https://linkedin.com/in/christerjohansson">linkedin.com/in/christerjohansson</a>
+      <span class="separator">|</span>
+      <a href="https://github.com/christerjohansson">github.com/christerjohansson</a>
+      <span class="separator">|</span>
+      <span>Stenungsund/Goteborg, Sweden</span>
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL SUMMARY -->
+  <div class="section avoid-break">
+    <div class="section-title">Professional Summary</div>
+    <div class="summary-text">Senior AI/Frontend Engineer with 20+ years shipping production React, TypeScript, and Next.js systems at scale. Volvo Certificate of Excellence 2024. At BCG (2024-2025), coached engineering teams on AI-powered development, reducing cycle times 30% and defect rates 20%. Fluent in modern frontend tooling (React 18, Next.js 14, Tailwind CSS, Zustand, React Query) with deep expertise in WCAG-compliant accessibility, performance optimization, and code quality. Mentor and technical leader: taught frontend at University of Borås (2018-2020), led teams at Chalmers and Sigma, advise on best practices. Seeking senior IC role to own significant codebase, mentor junior developers, and influence frontend architecture at scale.</div>
+  </div>
+
+  <!-- CORE COMPETENCIES -->
+  <div class="section">
+    <div class="section-title">Core Competencies</div>
+    <div class="competencies-grid">
+      <span class="competency-tag">React 18</span>
+      <span class="competency-tag">TypeScript</span>
+      <span class="competency-tag">Next.js 14</span>
+      <span class="competency-tag">Tailwind CSS</span>
+      <span class="competency-tag">Zustand</span>
+      <span class="competency-tag">React Query</span>
+      <span class="competency-tag">Jest</span>
+      <span class="competency-tag">Playwright</span>
+      <span class="competency-tag">WCAG Accessibility</span>
+      <span class="competency-tag">Performance Optimization</span>
+      <span class="competency-tag">Frontend Architecture</span>
+      <span class="competency-tag">Code Reviews</span>
+      <span class="competency-tag">Mentoring</span>
+      <span class="competency-tag">REST APIs</span>
+      <span class="competency-tag">CI/CD (GitHub Actions)</span>
+      <span class="competency-tag">B2B SaaS</span>
+    </div>
+  </div>
+
+  <!-- WORK EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Work Experience</div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Västra Götalandsregionen</span>
+        <span class="job-period">Sep 2023 - May 2024</span>
+      </div>
+      <div class="job-role">Senior Front End Lead Developer</div>
+      <div class="job-location">Göteborg, Sweden</div>
+      <ul>
+        <li>Designed and implemented frontend architecture and CI workflow using React, Next.js 14, TypeScript, and Tailwind CSS with LLM-driven code generation and test scaffolding.</li>
+        <li>Integrated ChatGPT APIs for conversational search and content assistance, reducing manual librarian workload while maintaining WCAG 2.1 AA accessibility compliance.</li>
+        <li>Established AI-assisted analytics pipelines and documentation workflows, using LLMs to summarize usage data and surface actionable insights for product decisions.</li>
+        <li>Coached cross-functional team on safe and effective use of AI tooling in React/Next.js stack, reviewing AI-generated code for security, performance, and accessibility.</li>
+        <li>Owned 80K+ LOC headless CMS frontend serving regional library network; shipped production features with zero regressions.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Boston Consulting Group (BCG)</span>
+        <span class="job-period">Aug 2024 - Nov 2025</span>
+      </div>
+      <div class="job-role">AI Software Engineering Advisor</div>
+      <div class="job-location">Stockholm, Sweden</div>
+      <ul>
+        <li>Coached engineering teams and CTOs across 5+ portfolio companies on AI-powered development adoption; measurable results: 30% cycle time reduction, 20% defect rate reduction.</li>
+        <li>Facilitated hands-on pair programming sessions, live code reviews, and workshops integrating GitHub Copilot, SonarQube, OpenAI Codex, and custom LLM integrations into daily workflows.</li>
+        <li>Spearheaded AI SDR platform (SaaStr AI) handling 100K+ chats with founders and B2B executives; autonomously reviewed 1K+ speaker submissions for SaaStr Annual.</li>
+        <li>Empowered teams to move beyond theoretical AI strategies and achieve lasting gains in productivity, quality, and developer satisfaction.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Sigma Technology Group AB</span>
+        <span class="job-period">Dec 2021 - May 2024</span>
+      </div>
+      <div class="job-role">Senior Front End Developer</div>
+      <div class="job-location">Göteborg, Sweden</div>
+      <ul>
+        <li>Conducted code reviews and provided mentorship to junior developers on React, TypeScript, and Next.js best practices, fostering continuous improvement culture.</li>
+        <li>Implemented microservices architecture using Node.js, Docker, and REST APIs; improved system scalability and team velocity.</li>
+        <li>Formed advisory board with senior engineers to guide company through AI-driven development transformation; established playbooks for architectural decisions.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Chalmers University of Technology</span>
+        <span class="job-period">Jan 2022 - Jun 2022</span>
+      </div>
+      <div class="job-role">Senior Front End Lead Developer</div>
+      <div class="job-location">Göteborg, Sweden</div>
+      <ul>
+        <li>Led team of 5 engineers in shift from React-only to Next.js 14, TypeScript, and Node.js architecture; shipped production platform serving university content delivery.</li>
+        <li>Coached junior developers on Next.js/TypeScript and safe use of AI coding assistants; established DevOps practices, Git conventions, and CI/CD pipelines.</li>
+        <li>Created comprehensive frontend playbook documenting patterns, standards, and onboarding material for team standardization.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section avoid-break">
+    <div class="section-title">Featured Projects</div>
+
+    <div class="project">
+      <div>
+        <span class="project-title">Leijon Finance & Wealth Management</span>
+        <span class="project-badge">Dec 2023 - Present</span>
+      </div>
+      <div class="project-desc">Lead developer on comprehensive digital platform integrating traditional banking, investments, and legal services. Designed scalable architecture with React, Next.js 14, TypeScript, Tailwind CSS, GraphQL, and Node.js backend. Implemented Role-Based Access Control (RBAC), advanced credit scoring (FICO + VantageScore), and secure multi-factor authentication. Technology: React, Next.js, TypeScript, Tailwind CSS, GraphQL, PostgreSQL, Python, Gemini, ChatGPT, Claude.</div>
+    </div>
+
+    <div class="project">
+      <div>
+        <span class="project-title">Västra Götalandsregionen Library Platform</span>
+        <span class="project-badge">Sep 2023 - May 2024</span>
+      </div>
+      <div class="project-desc">Designed and led frontend architecture for collaborative web application serving 50+ regional libraries. Built headless CMS frontend with React, Next.js, TypeScript, Tailwind CSS, and Umbraco REST APIs. Integrated ChatGPT and LLMs for conversational search and automated content assistance. Achieved WCAG 2.1 AA compliance across entire platform. Implemented CI/CD workflows with GitHub Actions.</div>
+    </div>
+
+    <div class="project">
+      <div>
+        <span class="project-title">Financial Assessment Application</span>
+        <span class="project-badge">Dec 2022 - Feb 2023</span>
+      </div>
+      <div class="project-desc">Led frontend development for comprehensive financial capability assessment platform. Built custom UI with React, Next.js, TypeScript, Tailwind CSS, React Hook Form, and ApexCharts for business statistics visualization. Implemented mocked API layer using Next.js API routes; later integrated with real backend. Utilized LLMs for UX copy refinement, design iteration, and technical documentation.</div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section avoid-break">
+    <div class="section-title">Education</div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <span>
+          <span class="edu-title">Front-End Developer with React</span>
+          <span class="edu-org">Massachusetts Institute of Technology</span>
+        </span>
+        <span class="edu-year">2017</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <span>
+          <span class="edu-title">Bachelor of Science in Informatics (Library and Information Science)</span>
+          <span class="edu-org">University of Borås</span>
+        </span>
+        <span class="edu-year">2014</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section avoid-break">
+    <div class="section-title">Certifications</div>
+
+    <div class="cert-item">
+      <span>
+        <span class="cert-title">Sr. Front End Developer, Certificate of Excellence</span>
+        <span class="cert-org">Volvo</span>
+      </span>
+      <span class="cert-year">2024</span>
+    </div>
+
+    <div class="cert-item">
+      <span>
+        <span class="cert-title">Front-End Developer</span>
+        <span class="cert-org">Meta</span>
+      </span>
+      <span class="cert-year">2023</span>
+    </div>
+
+    <div class="cert-item">
+      <span>
+        <span class="cert-title">ReactJS Developer</span>
+        <span class="cert-org">TESTDOME</span>
+      </span>
+      <span class="cert-year">2020</span>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section avoid-break">
+    <div class="section-title">Technical Skills</div>
+
+    <div class="skills-grid">
+      <span><span class="skill-category">Frontend:</span> React 18, TypeScript, Next.js 14, HTML5, CSS3</span>
+      <span><span class="skill-category">Styling:</span> Tailwind CSS, Material UI, Bootstrap</span>
+      <span><span class="skill-category">State Management:</span> Zustand, Redux, React Query, Apollo Client</span>
+      <span><span class="skill-category">Testing:</span> Jest, Playwright, Cypress, unit/integration/E2E</span>
+      <span><span class="skill-category">Backend:</span> Node.js, REST APIs, GraphQL, PostgreSQL</span>
+      <span><span class="skill-category">DevOps:</span> Docker, CI/CD, GitHub Actions, Git/GitFlow</span>
+      <span><span class="skill-category">Accessibility:</span> WCAG 2.1 AA, semantic HTML, ARIA</span>
+      <span><span class="skill-category">Tools:</span> VS Code, Figma, Linear, GitHub, AWS</span>
+      <span><span class="skill-category">Languages:</span> Swedish (native), English (full professional proficiency)</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

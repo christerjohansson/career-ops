@@ -90,19 +90,19 @@ function parseScore(s) {
 
 function parseAppLine(line) {
   const parts = line.split('|').map(s => s.trim());
-  if (parts.length < 9) return null;
+  if (parts.length < 10) return null; // Added Profile column
   const num = parseInt(parts[1]);
   if (isNaN(num) || num === 0) return null;
   return {
-    num, date: parts[2], company: parts[3], role: parts[4],
-    score: parts[5], status: parts[6], pdf: parts[7], report: parts[8],
-    notes: parts[9] || '', raw: line,
+    num, profile: parts[2], date: parts[3], company: parts[4], role: parts[5],
+    score: parts[6], status: parts[7], pdf: parts[8], report: parts[9],
+    notes: parts[10] || '', raw: line,
   };
 }
 
 /**
  * Parse a TSV file content into a structured addition object.
- * Handles: 9-col TSV, 8-col TSV, pipe-delimited markdown.
+ * Handles: 10-col TSV (Profile), 9-col TSV, 8-col TSV, pipe-delimited markdown.
  */
 function parseTsvContent(content, filename) {
   content = content.trim();
@@ -114,21 +114,22 @@ function parseTsvContent(content, filename) {
   // Detect pipe-delimited (markdown table row)
   if (content.startsWith('|')) {
     parts = content.split('|').map(s => s.trim()).filter(Boolean);
-    if (parts.length < 8) {
+    if (parts.length < 9) {
       console.warn(`⚠️  Skipping malformed pipe-delimited ${filename}: ${parts.length} fields`);
       return null;
     }
-    // Format: num | date | company | role | score | status | pdf | report | notes
+    // Format: num | profile | date | company | role | score | status | pdf | report | notes
     addition = {
       num: parseInt(parts[0]),
-      date: parts[1],
-      company: parts[2],
-      role: parts[3],
-      score: parts[4],
-      status: validateStatus(parts[5]),
-      pdf: parts[6],
-      report: parts[7],
-      notes: parts[8] || '',
+      profile: parts[1],
+      date: parts[2],
+      company: parts[3],
+      role: parts[4],
+      score: parts[5],
+      status: validateStatus(parts[6]),
+      pdf: parts[7],
+      report: parts[8],
+      notes: parts[9] || '',
     };
   } else {
     // Tab-separated
@@ -138,40 +139,38 @@ function parseTsvContent(content, filename) {
       return null;
     }
 
-    // Detect column order: some TSVs have (status, score), others have (score, status)
-    // Heuristic: if col4 looks like a score and col5 looks like a status, they're swapped
-    const col4 = parts[4].trim();
-    const col5 = parts[5].trim();
+    // Detect if Profile column is present (10 cols vs 9 cols)
+    let profile = 'unknown';
+    let offset = 0;
+    if (parts.length >= 10) {
+      profile = parts[1];
+      offset = 1;
+    }
+
+    // Detect column order: score vs status
+    const col4 = parts[4 + offset].trim();
+    const col5 = parts[5 + offset].trim();
     const col4LooksLikeScore = /^\d+\.?\d*\/5$/.test(col4) || col4 === 'N/A' || col4 === 'DUP';
-    const col5LooksLikeScore = /^\d+\.?\d*\/5$/.test(col5) || col5 === 'N/A' || col5 === 'DUP';
-    const col4LooksLikeStatus = /^(evaluated|applied|responded|interview|offer|rejected|discarded|skip|evaluada|aplicado|respondido|entrevista|oferta|rechazado|descartado|no aplicar|cerrada|duplicado|repost|condicional|hold|monitor)/i.test(col4);
     const col5LooksLikeStatus = /^(evaluated|applied|responded|interview|offer|rejected|discarded|skip|evaluada|aplicado|respondido|entrevista|oferta|rechazado|descartado|no aplicar|cerrada|duplicado|repost|condicional|hold|monitor)/i.test(col5);
 
     let statusCol, scoreCol;
-    if (col4LooksLikeStatus && !col4LooksLikeScore) {
-      // Standard format: col4=status, col5=score
-      statusCol = col4; scoreCol = col5;
-    } else if (col4LooksLikeScore && col5LooksLikeStatus) {
-      // Swapped format: col4=score, col5=status
+    if (col4LooksLikeScore && col5LooksLikeStatus) {
       statusCol = col5; scoreCol = col4;
-    } else if (col5LooksLikeScore && !col4LooksLikeScore) {
-      // col5 is definitely score → col4 must be status
-      statusCol = col4; scoreCol = col5;
     } else {
-      // Default: standard format (status before score)
       statusCol = col4; scoreCol = col5;
     }
 
     addition = {
       num: parseInt(parts[0]),
-      date: parts[1],
-      company: parts[2],
-      role: parts[3],
+      profile,
+      date: parts[1 + offset],
+      company: parts[2 + offset],
+      role: parts[3 + offset],
       status: validateStatus(statusCol),
       score: scoreCol,
-      pdf: parts[6],
-      report: parts[7],
-      notes: parts[8] || '',
+      pdf: parts[6 + offset],
+      report: parts[7 + offset],
+      notes: parts[8 + offset] || '',
     };
   }
 
@@ -196,7 +195,7 @@ const existingApps = [];
 let maxNum = 0;
 
 for (const line of appLines) {
-  if (line.startsWith('|') && !line.includes('---') && !line.includes('Empresa')) {
+  if (line.startsWith('|') && !line.includes('---') && !line.includes('Empresa') && !line.includes('Profile')) {
     const app = parseAppLine(line);
     if (app) {
       existingApps.push(app);
@@ -271,10 +270,10 @@ for (const file of tsvFiles) {
     const oldScore = parseScore(duplicate.score);
 
     if (newScore > oldScore) {
-      console.log(`🔄 Update: #${duplicate.num} ${addition.company} — ${addition.role} (${oldScore}→${newScore})`);
+      console.log(`🔄 Update: #${duplicate.num} [${addition.profile}] ${addition.company} — ${addition.role} (${oldScore}→${newScore})`);
       const lineIdx = appLines.indexOf(duplicate.raw);
       if (lineIdx >= 0) {
-        const updatedLine = `| ${duplicate.num} | ${addition.date} | ${addition.company} | ${addition.role} | ${addition.score} | ${duplicate.status} | ${duplicate.pdf} | ${addition.report} | Re-eval ${addition.date} (${oldScore}→${newScore}). ${addition.notes} |`;
+        const updatedLine = `| ${duplicate.num} | ${addition.profile} | ${addition.date} | ${addition.company} | ${addition.role} | ${addition.score} | ${duplicate.status} | ${duplicate.pdf} | ${addition.report} | Re-eval ${addition.date} (${oldScore}→${newScore}). ${addition.notes} |`;
         appLines[lineIdx] = updatedLine;
         updated++;
       }
@@ -287,10 +286,10 @@ for (const file of tsvFiles) {
     const entryNum = addition.num > maxNum ? addition.num : ++maxNum;
     if (addition.num > maxNum) maxNum = addition.num;
 
-    const newLine = `| ${entryNum} | ${addition.date} | ${addition.company} | ${addition.role} | ${addition.score} | ${addition.status} | ${addition.pdf} | ${addition.report} | ${addition.notes} |`;
+    const newLine = `| ${entryNum} | ${addition.profile} | ${addition.date} | ${addition.company} | ${addition.role} | ${addition.score} | ${addition.status} | ${addition.pdf} | ${addition.report} | ${addition.notes} |`;
     newLines.push(newLine);
     added++;
-    console.log(`➕ Add #${entryNum}: ${addition.company} — ${addition.role} (${addition.score})`);
+    console.log(`➕ Add #${entryNum} [${addition.profile}]: ${addition.company} — ${addition.role} (${addition.score})`);
   }
 }
 

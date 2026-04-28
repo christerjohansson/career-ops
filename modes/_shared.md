@@ -8,16 +8,18 @@
      that improve with each career release.
      ============================================================ -->
 
-## Sources of Truth
+## Sources of Truth (Profile Layer)
 
-| File | Path | When |
+All user-specific files are located in `profiles/{profile-name}/`. The system automatically detects the active profile.
+
+| File | Path (in profile) | When |
 |------|------|------|
-| cv.md | `cv.md` (project root) | ALWAYS |
-| article-digest.md | `article-digest.md` (if exists) | ALWAYS (detailed proof points) |
-| profile.yml | `config/profile.yml` | ALWAYS (candidate identity and targets) |
-| _profile.md | `modes/_profile.md` | ALWAYS (user archetypes, narrative, negotiation) |
+| cv.md | `cv.md` | ALWAYS |
+| article-digest.md | `article-digest.md` | ALWAYS (if exists) |
+| profile.yml | `profile.yml` | ALWAYS (candidate identity and targets) |
+| _profile.md | `_profile.md` | ALWAYS (user archetypes, narrative, negotiation) |
 
-**RULE: NEVER hardcode metrics from proof points.** Read them from cv.md + article-digest.md at evaluation time.
+**RULE: NEVER hardcode metrics from proof points.** Read them from the profile folder at evaluation time.
 **RULE: For article/project metrics, article-digest.md takes precedence over cv.md.**
 **RULE: Read _profile.md AFTER this file. User customizations in _profile.md override defaults here.**
 

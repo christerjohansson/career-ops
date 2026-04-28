@@ -1,0 +1,135 @@
+# Career-Ops Profile -- Christer Johansson (Dual-Track: Engineer + Instructor)
+#
+# Dual-track profile: Senior AI/Frontend Engineer AND Technical Instructor/Developer Advocate
+# See examples/dual-track-engineer-instructor/README.md for the pattern.
+
+candidate:
+  full_name: "Christer Johansson"
+  email: "christer.johansson@stenungsund.nu"
+  phone: "+46 722 010 620"
+  location: "Stenungsund/Göteborg, Sweden"
+  linkedin: "linkedin.com/in/christerjohansson"
+  github: "github.com/christerjohansson"
+  portfolio_url: ""  # Add if you have one
+
+target_roles:
+  # North Star -- TWO primary tracks
+  primary:
+    - "Senior AI Engineer"
+    - "Staff Frontend Engineer"
+    - "AI Engineering Advisor"
+    - "Senior Technical Instructor (AI/Frontend)"
+    - "Developer Advocate"
+    - "Lead Curriculum Engineer"
+
+  # Archetypes -- TWO entries with fit: primary
+  archetypes:
+    - name: "Senior AI/Frontend Engineer"
+      level: "Senior/Staff"
+      fit: "primary"
+      track: "engineering"
+      sell_when: "JD emphasizes AI-powered development, React/Next.js/TypeScript, LLM integration, coaching teams on AI tooling, hands-on AI adoption, reducing cycle times and defect rates"
+
+    - name: "Technical Instructor / Developer Advocate"
+      level: "Senior/Lead"
+      fit: "primary"
+      track: "teaching"
+      sell_when: "JD emphasizes curriculum development, university/bootcamp lectureship, developer advocacy, internal enablement, mentorship, technical training, UX/UI instruction"
+
+    - name: "AI DevRel Engineer"
+      level: "Senior"
+      fit: "secondary"
+      track: "hybrid"
+      sell_when: "JD wants someone who can ship AI-powered demos, write technical docs, AND speak at events / run workshops -- natural dual-track landing zone"
+
+    - name: "Frontend Lead / Engineering Manager"
+      level: "Lead/Manager"
+      fit: "secondary"
+      track: "engineering"
+      sell_when: "JD wants ownership of frontend architecture, mentoring developers, establishing standards, advisory boards"
+
+    - name: "Head of Technical Education"
+      level: "Lead/Manager"
+      fit: "adjacent"
+      track: "teaching"
+      sell_when: "JD wants ownership of entire curriculum, hiring + managing instructors, working with industry partners"
+
+narrative:
+  # One-line headline naming BOTH tracks
+  headline: "Senior AI engineer who teaches developers to ship better code faster -- 20+ years engineering, 5,200+ teaching hours, 30% cycle time reduction, 20% defect rate cut"
+
+  # Exit story bridges both tracks
+  exit_story: "Spent the last decade engineering at scale (BCG, Volvo, Sigma, Morgan Stanley) while simultaneously teaching frontend/AI at University of Borås and mentoring teams. Both tracks reinforce each other -- teaching forces me to write code people can actually understand, and production work keeps the curriculum grounded in reality. Open to roles that leverage both sides or focus on one at full intensity with the right team."
+
+  # Superpowers -- mix of engineering AND teaching
+  superpowers:
+    - "AI-powered development adoption -- hands-on coaching that cuts cycle times 30% and defect rates 20%"
+    - "Ship production frontend systems (React, Next.js, TypeScript, Tailwind) with accessibility and performance"
+    - "Design and deliver technical curriculum that produces hireable engineers"
+    - "Explain complex technical concepts in plain language -- in Swedish and English"
+    - "Build advisory boards and mentor teams from junior to CTO level"
+    - "Bridge engineering and education -- create internal docs and playbooks people actually use"
+
+  # Proof points -- mix engineering AND teaching wins, marked by track
+  proof_points:
+    - name: "BCG AI Engineering Advisory"
+      url: ""
+      hero_metric: "Reduced cycle times 30%, defect rates 20%, 500K EUR pipeline from AI SDR in first weeks"
+      track: "engineering"
+
+    - name: "Volvo Certificate of Excellence 2024"
+      url: "https://github.com/sigma-technology-ds/certifications"
+      hero_metric: "Sr. Front End Developer certification for outstanding proficiency"
+      track: "engineering"
+
+    - name: "SaaStr AI Platform"
+      url: ""
+      hero_metric: "100,000+ chats with founders, 1,000+ speaker submissions reviewed autonomously, 3x content production increase"
+      track: "engineering"
+
+    - name: "University of Borås Technical Instruction"
+      url: ""
+      hero_metric: "2+ years lecturing frontend/AI, curriculum development, student placement in industry"
+      track: "teaching"
+
+    - name: "Publications (4 technical books/courses)"
+      url: ""
+      hero_metric: "70 Intervjufrågor (GitBook 2024), Learn React Now (2020), React Training Course, The JavaScript Workshop (Packt 2019)"
+      track: "teaching"
+
+    - name: "Multiple Company Advisory Boards"
+      url: ""
+      hero_metric: "Sigma, Kinnarps, Waya Finance -- guided management through AI-driven development transformation"
+      track: "hybrid"
+
+compensation:
+  # Default range = engineering range (typically higher)
+  target_range: "SEK 900K-1.2M"  # 75K-100K SEK/month
+  currency: "SEK"
+  minimum: "SEK 750K"  # 62.5K SEK/month
+  location_flexibility: "Remote within Sweden; up to 1 week/month on-site in Stockholm/Göteborg"
+
+  # alternate_ranges for dual-track pattern
+  alternate_ranges:
+    - track: "teaching"
+      target_range: "SEK 650K-850K"  # 54K-71K SEK/month
+      minimum: "SEK 550K"  # 46K SEK/month
+      note: "Teaching/academic roles typically pay 20-30% less than engineering. Still intrinsically rewarding but need sustainable compensation."
+
+    - track: "hybrid"
+      target_range: "SEK 800K-1.1M"  # 67K-92K SEK/month
+      minimum: "SEK 700K"  # 58K SEK/month
+      note: "DevRel and Developer Advocate roles -- price between engineering and teaching tracks."
+
+location:
+  country: "Sweden"
+  city: "Stenungsund/Göteborg"
+  timezone: "CET/CEST"
+  visa_status: "Swedish citizen, no sponsorship needed"
+  onsite_availability: "Flexible -- can do 1 week/month in Stockholm, Göteborg, or other Swedish cities; full remote preferred"
+
+# Language support
+language:
+  native: "Swedish"
+  professional: ["English"]
+  # modes_dir: "modes"  # Use "modes/de", "modes/fr", or "modes/ja" for localized modes

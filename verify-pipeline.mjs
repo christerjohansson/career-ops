@@ -69,13 +69,13 @@ const entries = [];
 for (const line of lines) {
   if (!line.startsWith('|')) continue;
   const parts = line.split('|').map(s => s.trim());
-  if (parts.length < 9) continue;
+  if (parts.length < 10) continue; // Updated for Profile column
   const num = parseInt(parts[1]);
   if (isNaN(num)) continue;
   entries.push({
-    num, date: parts[2], company: parts[3], role: parts[4],
-    score: parts[5], status: parts[6], pdf: parts[7], report: parts[8],
-    notes: parts[9] || '',
+    num, profile: parts[2], date: parts[3], company: parts[4], role: parts[5],
+    score: parts[6], status: parts[7], pdf: parts[8], report: parts[9],
+    notes: parts[10] || '',
   });
 }
 
@@ -89,36 +89,36 @@ for (const e of entries) {
   const statusOnly = clean.replace(/\s+\d{4}-\d{2}-\d{2}.*$/, '').trim();
 
   if (!CANONICAL_STATUSES.includes(statusOnly) && !ALIASES[statusOnly]) {
-    error(`#${e.num}: Non-canonical status "${e.status}"`);
+    error(`#${e.num} [${e.profile}]: Non-canonical status "${e.status}"`);
     badStatuses++;
   }
 
   // Check for markdown bold in status
   if (e.status.includes('**')) {
-    error(`#${e.num}: Status contains markdown bold: "${e.status}"`);
+    error(`#${e.num} [${e.profile}]: Status contains markdown bold: "${e.status}"`);
     badStatuses++;
   }
 
   // Check for dates in status
   if (/\d{4}-\d{2}-\d{2}/.test(e.status)) {
-    error(`#${e.num}: Status contains date: "${e.status}" — dates go in date column`);
+    error(`#${e.num} [${e.profile}]: Status contains date: "${e.status}" — dates go in date column`);
     badStatuses++;
   }
 }
 if (badStatuses === 0) ok('All statuses are canonical');
 
 // --- Check 2: Duplicates ---
-const companyRoleMap = new Map();
+const profileCompanyRoleMap = new Map();
 let dupes = 0;
 for (const e of entries) {
-  const key = e.company.toLowerCase().replace(/[^a-z0-9]/g, '') + '::' +
+  const key = e.profile + '::' + e.company.toLowerCase().replace(/[^a-z0-9]/g, '') + '::' +
     e.role.toLowerCase().replace(/[^a-z0-9 ]/g, '');
-  if (!companyRoleMap.has(key)) companyRoleMap.set(key, []);
-  companyRoleMap.get(key).push(e);
+  if (!profileCompanyRoleMap.has(key)) profileCompanyRoleMap.set(key, []);
+  profileCompanyRoleMap.get(key).push(e);
 }
-for (const [key, group] of companyRoleMap) {
+for (const [key, group] of profileCompanyRoleMap) {
   if (group.length > 1) {
-    warn(`Possible duplicates: ${group.map(e => `#${e.num}`).join(', ')} (${group[0].company} — ${group[0].role})`);
+    warn(`Possible duplicates: ${group.map(e => `#${e.num}`).join(', ')} (${group[0].profile} — ${group[0].company} — ${group[0].role})`);
     dupes++;
   }
 }
@@ -129,9 +129,10 @@ let brokenReports = 0;
 for (const e of entries) {
   const match = e.report.match(/\]\(([^)]+)\)/);
   if (!match) continue;
-  const reportPath = join(CAREER_OPS, match[1]);
+  // Resolve path from root
+  const reportPath = join(CAREER_OPS, match[1].replace(/^\.\.\//, ''));
   if (!existsSync(reportPath)) {
-    error(`#${e.num}: Report not found: ${match[1]}`);
+    error(`#${e.num} [${e.profile}]: Report not found: ${match[1]}`);
     brokenReports++;
   }
 }
@@ -142,7 +143,7 @@ let badScores = 0;
 for (const e of entries) {
   const s = e.score.replace(/\*\*/g, '').trim();
   if (!/^\d+\.?\d*\/5$/.test(s) && s !== 'N/A' && s !== 'DUP') {
-    error(`#${e.num}: Invalid score format: "${e.score}"`);
+    error(`#${e.num} [${e.profile}]: Invalid score format: "${e.score}"`);
     badScores++;
   }
 }
@@ -152,10 +153,10 @@ if (badScores === 0) ok('All scores valid');
 let badRows = 0;
 for (const line of lines) {
   if (!line.startsWith('|')) continue;
-  if (line.includes('---') || line.includes('Empresa')) continue;
+  if (line.includes('---') || line.includes('Empresa') || line.includes('Profile')) continue;
   const parts = line.split('|');
-  if (parts.length < 9) {
-    error(`Row with <9 columns: ${line.substring(0, 80)}...`);
+  if (parts.length < 10) {
+    error(`Row with <10 columns: ${line.substring(0, 80)}...`);
     badRows++;
   }
 }

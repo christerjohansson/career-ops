@@ -10,17 +10,20 @@ The portfolio that goes with this system is also open source: [cv-santiago](http
 
 ## Data Contract (CRITICAL)
 
-There are two layers. Read `DATA_CONTRACT.md` for the full list.
+The system is now multi-profile. User data is split between a **Global Layer** and a **Profile Layer**.
 
-**User Layer (NEVER auto-updated, personalization goes HERE):**
-- `cv.md`, `config/profile.yml`, `modes/_profile.md`, `article-digest.md`, `portals.yml`
-- `data/*`, `reports/*`, `output/*`, `interview-prep/*`
+**Global Layer (Root level):**
+- `data/applications.md` — Shared tracker across ALL profiles (includes Profile column).
+- `portals.yml` — Shared job portal configuration.
+- `templates/` — Shared templates (CV, portal examples, etc.).
 
-**System Layer (auto-updatable, DON'T put user data here):**
-- `modes/_shared.md`, `modes/oferta.md`, all other modes
-- `CLAUDE.md`, `*.mjs` scripts, `dashboard/*`, `templates/*`, `batch/*`
+**Profile Layer (`profiles/{profile-name}/`):**
+- `cv.md`, `profile.yml`, `_profile.md`, `article-digest.md` — Core identity.
+- `reports/`, `output/`, `interview-prep/`, `data/` — Profile-specific outputs and data.
 
-**THE RULE: When the user asks to customize anything (archetypes, narrative, negotiation scripts, proof points, location policy, comp targets), ALWAYS write to `modes/_profile.md` or `config/profile.yml`. NEVER edit `modes/_shared.md` for user-specific content.** This ensures system updates don't overwrite their customizations.
+**THE RULE: When customizing for a specific user, ALWAYS edit files in their `profiles/{profile-name}/` folder.** The system automatically detects the active profile based on the `profiles/` directory. If multiple profiles exist, the first one (alphabetically, excluding `_template`) is used as default unless specified.
+
+**Profile Template:** Use `profiles/_template/` to create new profiles.
 
 ## Update Check
 
