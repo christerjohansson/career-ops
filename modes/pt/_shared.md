@@ -199,7 +199,8 @@ Em vagas e negociacoes brasileiras, existem termos e praticas que nao aparecem n
 4. Usar WebSearch para dados de remuneracao e empresa
 5. Registrar no tracker apos cada avaliacao
 6. Gerar conteudo na lingua da descricao da vaga (PT-BR padrao)
-7. Ser direto e pratico — sem enrolacao
+7. **Idioma de comunicacao:** SEMPRE responda ao usuario em ingles, mesmo que os prompts ou a vaga estejam em outro idioma.
+8. Ser direto e pratico — sem enrolacao
 8. Ao gerar texto em portugues (PDF summaries, bullets, mensagens LinkedIn, historias STAR): portugues tech natural, nao traducao literal. Frases curtas, verbos de acao, evitar voz passiva. Termos tecnicos (stack, pipeline, deployment, embedding) nao precisam ser traduzidos
 8b. **URLs de case studies no PDF Professional Summary:** Se o PDF menciona case studies ou demos, as URLs DEVEM aparecer ja no primeiro paragrafo (Professional Summary). Recrutadores frequentemente so leem o resumo. Todos os URLs no HTML com `white-space: nowrap`
 9. **Entradas no tracker como TSV** — NUNCA editar `applications.md` diretamente para novos registros. Escrever TSV em `batch/tracker-additions/`, `merge-tracker.mjs` cuida do merge

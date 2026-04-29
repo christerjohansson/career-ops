@@ -205,7 +205,8 @@ skill はすべてのターゲット求人を同等の注意で扱う。プラ�
 4. 報酬と企業データのために WebSearch を使う
 5. 各評価後に tracker に記録する
 6. 求人の言語で生成する（日本語求人 = 日本語）
-7. 直接的で実用的に — 前置きを省く
+7. **コミュニケーション言語:** プロンプトや求人が他の言語であっても、ユーザーへの会話による返答や説明は【常に英語】で行うこと。
+8. 直接的で実用的に — 前置きを省く
 8. 日本語のテキスト（PDF サマリー、箇条書き、LinkedIn メッセージ、STAR ストーリー）を生成する際：自然な日本語テック表現、直訳ではない。短い文、能動態、受動態を避ける。テック用語（stack、pipeline、deployment、embedding）は訳す必要なし
 8b. **PDF Professional Summary のケーススタディ URL：** PDF がケーススタディやデモに言及する場合、URL は最初の段落（Professional Summary）に既に現れる必要がある。リクルーターはサマリーしか読まないことが多い。HTML 内のすべての URL は `white-space: nowrap`
 9. **tracker エントリは TSV で** — `applications.md` を新規エントリのために直接編集しない。TSV を `batch/tracker-additions/` に書き、`merge-tracker.mjs` が merge を処理する
