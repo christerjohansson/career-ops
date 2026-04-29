@@ -27,7 +27,9 @@ const PIPELINE_PATH = 'data/pipeline.md';
 const APPLICATIONS_PATH = 'data/applications.md';
 
 // Ensure required directories exist (fresh setup)
+const JDS_DIR = 'jds';
 mkdirSync('data', { recursive: true });
+mkdirSync(JDS_DIR, { recursive: true });
 
 const CONCURRENCY = 10;
 const FETCH_TIMEOUT_MS = 10_000;
@@ -108,9 +110,11 @@ function parsePlatsbanken(json, portalName) {
   const hits = json.hits || [];
   return hits.map(h => ({
     title: h.headline || '',
-    url: h.ad_url || '',
+    url: h.webpage_url || h.ad_url || '',
     company: h.employer?.name || 'Unknown',
     location: h.workplace_address?.city || h.workplace_address?.municipality || '',
+    description: h.description?.text || h.description?.text_formatted || '',
+    requirements: h.description?.requirements || ''
   }));
 }
 
@@ -233,7 +237,7 @@ function appendToScanHistory(offers, date) {
   }
 
   const lines = offers.map(o =>
-    `${o.url}\t${date}\t${o.source}\t${o.title}\t${o.company}\tadded`
+    `${o.originalUrl || o.url}\t${date}\t${o.source}\t${o.title}\t${o.company}\tadded`
   ).join('\n') + '\n';
 
   appendFileSync(SCAN_HISTORY_PATH, lines, 'utf-8');
@@ -359,7 +363,22 @@ async function main() {
             totalDupes++;
             continue;
           }
-          seenUrls.add(job.url);
+          
+          if (!dryRun && (job.description || job.requirements)) {
+            const slug = job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 50);
+            const companySlug = job.company.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 30);
+            const jdFilename = `${companySlug}-${slug}.md`.replace(/^-+|-+$/g, '');
+            const jdPath = `${JDS_DIR}/${jdFilename}`;
+            let jdContent = `# ${job.title}\n\n**Company:** ${job.company}\n**Source:** ${job.url}\n\n`;
+            if (job.description) jdContent += `## Description\n${job.description}\n\n`;
+            if (job.requirements) jdContent += `## Requirements\n${job.requirements}\n`;
+            
+            writeFileSync(jdPath, jdContent, 'utf-8');
+            job.originalUrl = job.url;
+            job.url = `local:${jdPath}`;
+          }
+
+          seenUrls.add(job.originalUrl || job.url);
           seenCompanyRoles.add(key);
           newOffers.push({ ...job, source: portal.name });
         }
