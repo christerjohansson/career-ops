@@ -1,4 +1,4 @@
-# Career-Ops -- AI Job Search Pipeline
+# Karriärverket -- AI Job Search Pipeline
 
 ## Origin
 
@@ -46,7 +46,7 @@ To rollback: `node update-system.mjs rollback`
 
 ## What is career
 
-AI-powered job search automation built on Claude Code: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing.
+AI-powered job search automation built on Karriärverket: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing.
 
 ### Main Files
 

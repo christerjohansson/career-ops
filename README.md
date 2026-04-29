@@ -1,9 +1,9 @@
-# Career-Ops
+# Karriärverket
 
 [English](README.md) | [Español](README.es.md) | [Português (Brasil)](README.pt-BR.md) | [한국어](README.ko-KR.md) | [日本語](README.ja.md) | [Русский](README.ru.md) | [繁體中文](README.zh-TW.md)
 
 <p align="center">
-  <a href="https://x.com/santifer"><img src="docs/hero-banner.jpg" alt="Career-Ops — Multi-Agent Job Search System" width="800"></a>
+  <a href="https://x.com/santifer"><img src="docs/hero-banner.jpg" alt="Karriärverket — Multi-Agent Job Search System" width="800"></a>
 </p>
 
 <p align="center">
@@ -35,7 +35,7 @@
 ---
 
 <p align="center">
-  <img src="docs/demo.gif" alt="Career-Ops Demo" width="800">
+  <img src="docs/demo.gif" alt="Karriarverket Demo" width="800">
 </p>
 
 <p align="center"><strong>740+ job listings evaluated · 100+ personalized CVs · 1 dream role landed</strong></p>
@@ -44,7 +44,7 @@
 
 ## What Is This
 
-Career-Ops turns any AI coding CLI into a full job search command center. Instead of manually tracking applications in a spreadsheet, you get an AI-powered pipeline that:
+Karriärverket turns any AI coding CLI into a full job search command center. Instead of manually tracking applications in a spreadsheet, you get an AI-powered pipeline that:
 
 - **Evaluates offers** with a structured A-F scoring system (10 weighted dimensions)
 - **Generates tailored PDFs** -- ATS-optimized CVs customized per job description
@@ -52,9 +52,9 @@ Career-Ops turns any AI coding CLI into a full job search command center. Instea
 - **Processes in batch** -- evaluate 10+ offers in parallel with sub-agents
 - **Tracks everything** in a single source of truth with integrity checks
 
-> **Important: This is NOT a spray-and-pray tool.** Career-ops is a filter -- it helps you find the few offers worth your time out of hundreds. The system strongly recommends against applying to anything scoring below 4.0/5. Your time is valuable, and so is the recruiter's. Always review before submitting.
+> **Important: This is NOT a spray-and-pray tool.** Karriärverket is a filter -- it helps you find the few offers worth your time out of hundreds. The system strongly recommends against applying to anything scoring below 4.0/5. Your time is valuable, and so is the recruiter's. Always review before submitting.
 
-Career-ops is agentic: Claude Code navigates career pages with Playwright, evaluates fit by reasoning about your CV vs the job description (not keyword matching), and adapts your resume per listing.
+Karriärverket is agentic: Claude Code navigates career pages with Playwright, evaluates fit by reasoning about your CV vs the job description (not keyword matching), and adapts your resume per listing.
 
 > **Heads up: the first evaluations won't be great.** The system doesn't know you yet. Feed it context -- your CV, your career story, your proof points, your preferences, what you're good at, what you want to avoid. The more you nurture it, the better it gets. Think of it as onboarding a new recruiter: the first week they need to learn about you, then they become invaluable.
 
@@ -72,47 +72,62 @@ Built by someone who used it to evaluate 740+ job offers, generate 100+ tailored
 | **Portal Scanner** | 45+ companies pre-configured (Anthropic, OpenAI, ElevenLabs, Retool, n8n...) + custom queries across Ashby, Greenhouse, Lever, Wellfound |
 | **Batch Processing** | Parallel evaluation with `claude -p` workers |
 | **Dashboard TUI** | Terminal UI to browse, filter, and sort your pipeline |
+| **Multi-Profile** | Manage multiple identities, CVs, and tracking data in separate silos |
 | **Human-in-the-Loop** | AI evaluates and recommends, you decide and act. The system never submits an application -- you always have the final call |
 | **Pipeline Integrity** | Automated merge, dedup, status normalization, health checks |
 
 ## Quick Start
 
+This guide walks you through setting up Karriärverket and running your first job evaluation.
+
+### Step 1: Download the project
+Open a terminal and run the following command to clone the project to your computer:
+
 ```bash
-# 1. Clone and install
 git clone https://github.com/santifer/career.git
-cd career && npm install
-npx playwright install chromium   # Required for PDF generation
-
-# 2. Check setup
-npm run doctor                     # Validates all prerequisites
-
-# 3. Configure
-cp config/profile.example.yml config/profile.yml  # Edit with your details
-cp templates/portals.example.yml portals.yml       # Customize companies
-
-# 4. Add your CV
-# Create cv.md in the project root with your CV in markdown
-
-# 5. Personalize with Claude
-claude   # Open Claude Code in this directory
-
-# Then ask Claude to adapt the system to you:
-# "Change the archetypes to backend engineering roles"
-# "Translate the modes to English"
-# "Add these 5 companies to portals.yml"
-# "Update my profile with this CV I'm pasting"
-
-# 6. Start using
-# Paste a job URL or run /career
+cd career
+npm install
+npx playwright install chromium
 ```
 
-> **The system is designed to be customized by Claude itself.** Modes, archetypes, scoring weights, negotiation scripts -- just ask Claude to change them. It reads the same files it uses, so it knows exactly what to edit.
+### Step 2: Verify your setup
+Run the setup checker to make sure everything installed correctly:
 
-See [docs/SETUP.md](docs/SETUP.md) for the full setup guide.
+```bash
+npm run doctor
+```
+
+### Step 3: Create your profile
+Your identity is stored in a profile directory. Copy the template to create your first one:
+
+```bash
+cp -r profiles/_template profiles/default
+```
+
+### Step 4: Configure your identity
+Open the files in `profiles/default/` and fill in your details:
+- `profile.yml`: Your name, contact info, and target salary.
+- `cv.md`: Paste your master CV in markdown format.
+- `_profile.md`: Define your target role types and career narrative.
+
+### Step 5: Open your AI assistant
+Run your preferred AI coding assistant from the project folder:
+
+```bash
+claude
+# or codex, opencode, etc.
+```
+
+### Step 6: Evaluate your first job description
+Karriärverket automatically detects the active profile in the `profiles/` directory. Run the auto-pipeline:
+
+```bash
+/career auto-pipeline https://jobs.example.com/senior-engineer
+```
 
 ## Usage
 
-Career-ops is a single slash command with multiple modes:
+Karriärverket is a single slash command with multiple modes:
 
 ```
 /career                → Show all available commands
@@ -129,7 +144,9 @@ Career-ops is a single slash command with multiple modes:
 /career project        → Evaluate a portfolio project
 ```
 
-Or just paste a job URL or description directly -- career auto-detects it and runs the full pipeline.
+Or just paste a job URL or description directly -- Karriärverket auto-detects it and runs the full pipeline.
+
+
 
 ## How It Works
 
@@ -144,14 +161,22 @@ You paste a job URL or description
          │
 ┌────────▼─────────┐
 │  A-F Evaluation  │  Match, gaps, comp research, STAR stories
-│  (reads cv.md)   │
+│  (reads profile) │
 └────────┬─────────┘
          │
     ┌────┼────┐
     ▼    ▼    ▼
- Report  PDF  Tracker
-  .md   .pdf   .tsv
+  Report PDF Tracker
+   .md  .pdf  .tsv
 ```
+
+## Managing Multiple Profiles
+
+Karriärverket is built for multiple users or different career tracks for the same user.
+
+- **Switching Profiles**: The system automatically detects the first directory in `profiles/` (alphabetically). To switch profiles, you can rename directories or point the system to a specific one by asking the AI.
+- **Global vs Local**: Application tracking (`data/applications.md`) is global and shared across all profiles, while your CV, reports, and PDFs are private to each profile.
+- **Isolated Context**: Each profile has its own STAR story bank and interview preparation data, ensuring that your AI assistant's memory is siloed and relevant to the active track.
 
 ## Pre-configured Portals
 
@@ -174,8 +199,8 @@ The built-in terminal dashboard lets you browse your pipeline visually:
 
 ```bash
 cd dashboard
-go build -o career-dashboard .
-./career-dashboard --path ..
+go build -o karriarverket-dashboard .
+./karriarverket-dashboard --path ..
 ```
 
 Features: 6 filter tabs, 4 sort modes, grouped/flat view, lazy-loaded previews, inline status changes.
@@ -183,33 +208,30 @@ Features: 6 filter tabs, 4 sort modes, grouped/flat view, lazy-loaded previews, 
 ## Project Structure
 
 ```
-career/
+karriarverket/
 ├── CLAUDE.md                    # Agent instructions
-├── cv.md                        # Your CV (create this)
-├── article-digest.md            # Your proof points (optional)
-├── config/
-│   └── profile.example.yml      # Template for your profile
+├── portals.yml                  # Shared job portal configuration
+├── data/
+│   └── applications.md          # Global application tracker
+├── profiles/                    # Multi-profile storage
+│   ├── _template/               # Template for new profiles
+│   └── {name}/                  # Your active profile
+│       ├── cv.md                # Your CV
+│       ├── profile.yml          # Profile configuration
+│       ├── _profile.md          # Target roles and narrative
+│       ├── reports/             # Evaluation reports
+│       ├── output/              # Generated PDFs
+│       └── data/                # Profile-specific data
 ├── modes/                       # 14 skill modes
-│   ├── _shared.md               # Shared context (customize this)
-│   ├── eval.md                  # Single evaluation
-│   ├── pdf.md                   # PDF generation
-│   ├── scan.md                  # Portal scanner
-│   ├── batch.md                 # Batch processing
+│   ├── _shared.md               # Shared system context
 │   └── ...
-├── templates/
+├── templates/                   # Shared templates
 │   ├── cv-template.html         # ATS-optimized CV template
-│   ├── portals.example.yml      # Scanner config template
 │   └── states.yml               # Canonical statuses
-├── batch/
-│   ├── batch-prompt.md          # Self-contained worker prompt
-│   └── batch-runner.sh          # Orchestrator script
+├── batch/                       # Batch processing scripts
 ├── dashboard/                   # Go TUI pipeline viewer
-├── data/                        # Your tracking data (gitignored)
-├── reports/                     # Evaluation reports (gitignored)
-├── output/                      # Generated PDFs (gitignored)
 ├── fonts/                       # Space Grotesk + DM Sans
-├── docs/                        # Setup, customization, architecture
-└── examples/                    # Sample CV, report, proof points
+└── docs/                        # Setup and architecture
 ```
 
 ## Tech Stack
@@ -232,11 +254,11 @@ career/
 
 ## About the Author
 
-I'm Santiago -- Head of Applied AI, former founder (built and sold a business that still runs with my name on it). I built career to manage my own job search. It worked: I used it to land my current role.
+I'm Santiago -- Head of Applied AI, former founder (built and sold a business that still runs with my name on it). I built Karriärverket to manage my own job search. It worked: I used it to land my current role.
 
 My portfolio and other open source projects → [santifer.io](https://santifer.io)
 
-☕ [Buy me a coffee](https://buymeacoffee.com/santifer) if career helped your job search.
+☕ [Buy me a coffee](https://buymeacoffee.com/santifer) if Karriärverket helped your job search.
 
 ## Star History
 
@@ -250,7 +272,7 @@ My portfolio and other open source projects → [santifer.io](https://santifer.i
 
 ## Disclaimer
 
-**career is a local, open-source tool — NOT a hosted service.** By using this software, you acknowledge:
+**Karriärverket is a local, open-source tool — NOT a hosted service.** By using this software, you acknowledge:
 
 1. **You control your data.** Your CV, contact info, and personal data stay on your machine and are sent directly to the AI provider you choose (Anthropic, OpenAI, etc.). We do not collect, store, or have access to any of your data.
 2. **You control the AI.** The default prompts instruct the AI not to auto-submit applications, but AI models can behave unpredictably. If you modify the prompts or use different models, you do so at your own risk. **Always review AI-generated content for accuracy before submitting.**
@@ -265,7 +287,7 @@ See [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md) for full details. This software i
   <img src="https://contrib.rocks/image?repo=santifer/career" />
 </a>
 
-Got hired using career? [Share your story!](https://github.com/santifer/career/issues/new?template=i-got-hired.yml)
+Got hired using Karriärverket? [Share your story!](https://github.com/santifer/career/issues/new?template=i-got-hired.yml)
 
 ## License
 

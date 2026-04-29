@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use career-ops, please cite it using these metadata."
-title: "Career-Ops: AI-Powered Job Search Pipeline"
+message: "If you use Karriärverket, please cite it using these metadata."
+title: "Karriärverket: AI-Powered Job Search Pipeline"
 type: software
 authors:
   - family-names: "Fernández de Valderrama"
