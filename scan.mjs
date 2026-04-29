@@ -104,7 +104,17 @@ function parseLever(json, companyName) {
   }));
 }
 
-const PARSERS = { greenhouse: parseGreenhouse, ashby: parseAshby, lever: parseLever };
+function parsePlatsbanken(json, portalName) {
+  const hits = json.hits || [];
+  return hits.map(h => ({
+    title: h.headline || '',
+    url: h.ad_url || '',
+    company: h.employer?.name || 'Unknown',
+    location: h.workplace_address?.city || h.workplace_address?.municipality || '',
+  }));
+}
+
+const PARSERS = { greenhouse: parseGreenhouse, ashby: parseAshby, lever: parseLever, platsbanken: parsePlatsbanken };
 
 // ── Fetch with timeout ──────────────────────────────────────────────
 
@@ -263,7 +273,9 @@ async function main() {
 
   const config = parseYaml(readFileSync(PORTALS_PATH, 'utf-8'));
   const companies = config.tracked_companies || [];
+  const apiPortals = config.api_portals || [];
   const titleFilter = buildTitleFilter(config.title_filter);
+  const positiveKeywords = (config.title_filter?.positive || []);
 
   // 2. Filter to enabled companies with detectable APIs
   const targets = companies
@@ -321,6 +333,42 @@ async function main() {
   });
 
   await parallelFetch(tasks, CONCURRENCY);
+
+  // 4.5. Fetch API Portals
+  console.log(`Scanning ${apiPortals.length} API portals...`);
+  for (const portal of apiPortals.filter(p => p.enabled !== false)) {
+    const queries = portal.queries?.length > 0 ? portal.queries : positiveKeywords;
+    const portalTasks = queries.map(q => async () => {
+      const url = `${portal.base_url}?q=${encodeURIComponent(q)}&limit=100`;
+      try {
+        const json = await fetchJson(url);
+        const jobs = parsePlatsbanken(json, portal.name);
+        totalFound += jobs.length;
+
+        for (const job of jobs) {
+          if (!titleFilter(job.title)) {
+            totalFiltered++;
+            continue;
+          }
+          if (seenUrls.has(job.url)) {
+            totalDupes++;
+            continue;
+          }
+          const key = `${job.company.toLowerCase()}::${job.title.toLowerCase()}`;
+          if (seenCompanyRoles.has(key)) {
+            totalDupes++;
+            continue;
+          }
+          seenUrls.add(job.url);
+          seenCompanyRoles.add(key);
+          newOffers.push({ ...job, source: portal.name });
+        }
+      } catch (err) {
+        errors.push({ company: portal.name, error: `${q}: ${err.message}` });
+      }
+    });
+    await parallelFetch(portalTasks, CONCURRENCY);
+  }
 
   // 5. Write results
   if (!dryRun && newOffers.length > 0) {
