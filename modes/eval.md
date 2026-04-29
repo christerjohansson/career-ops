@@ -1,4 +1,4 @@
-# Modo: oferta — Evaluación Completa A-G
+# Mode: eval — Full A-G Evaluation
 
 Cuando el candidato pega una oferta (texto o URL), entregar SIEMPRE los 7 bloques (A-F evaluation + G legitimacy):
 

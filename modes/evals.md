@@ -1,4 +1,4 @@
-# Modo: ofertas — Comparación Multi-Oferta
+# Mode: evals — Multi-Offer Comparison
 
 Scoring matrix de 10 dimensiones ponderadas:
 

@@ -191,7 +191,7 @@ career/
 │   └── profile.example.yml      # Template for your profile
 ├── modes/                       # 14 skill modes
 │   ├── _shared.md               # Shared context (customize this)
-│   ├── oferta.md                # Single evaluation
+│   ├── eval.md                  # Single evaluation
 │   ├── pdf.md                   # PDF generation
 │   ├── scan.md                  # Portal scanner
 │   ├── batch.md                 # Batch processing

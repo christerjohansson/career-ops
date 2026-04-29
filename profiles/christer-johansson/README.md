@@ -151,10 +151,10 @@ To verify the system picks the right track:
 
 ```bash
 # Test with engineering JD (should pick engineering range)
-claude -p /career oferta <engineering-jd-url>
+claude -p /career eval <engineering-jd-url>
 
 # Test with teaching JD (should pick teaching range)
-claude -p /career oferta <teaching-jd-url>
+claude -p /career eval <teaching-jd-url>
 
 # Check the "Archetype:" line in report header
 # If wrong track selected, the salary evaluation will be off
@@ -178,7 +178,7 @@ claude -p /career oferta <teaching-jd-url>
 
 **System files (may be updated):**
 - `modes/_shared.md`
-- `modes/oferta.md`, `modes/ofertas.md`, etc.
+- `modes/eval.md`, `modes/evals.md`, etc.
 - All `.mjs` scripts
 
 If you customize archetypes, compensation, or narrative, ALWAYS edit `modes/_profile.md` or `config/profile.yml`, not `modes/_shared.md`.

@@ -3,7 +3,7 @@ name: career
 description: AI job search command center -- evaluate offers, generate CVs, scan portals, track applications
 user_invocable: true
 args: mode
-argument-hint: "[scan | deep | pdf | oferta | ofertas | apply | batch | tracker | pipeline | contacto | training | project | job | interview-prep | update]"
+argument-hint: "[scan | deep | pdf | eval | evals | apply | batch | tracker | pipeline | contacto | training | project | job | interview-prep | update]"
 ---
 
 # career -- Router
@@ -16,8 +16,8 @@ Determine the mode from `{{mode}}`:
 |-------|------|
 | (empty / no args) | `discovery` -- Show command menu |
 | JD text or URL (no sub-command) | **`auto-pipeline`** |
-| `oferta` | `oferta` |
-| `ofertas` | `ofertas` |
+| `eval` | `eval` |
+| `evals` | `evals` |
 | `contacto` | `contacto` |
 | `deep` | `deep` |
 | `pdf` | `pdf` |
@@ -48,8 +48,8 @@ career -- Command Center
 Available commands:
   /career {JD}      → AUTO-PIPELINE: evaluate + report + PDF + tracker (paste text or URL)
   /career pipeline  → Process pending URLs from inbox (data/pipeline.md)
-  /career oferta    → Evaluation only A-F (no auto PDF)
-  /career ofertas   → Compare and rank multiple offers
+  /career eval      → Evaluation only A-F (no auto PDF)
+  /career evals     → Compare and rank multiple offers
   /career contacto  → LinkedIn power move: find contacts + draft message
   /career deep      → Deep research prompt about company
   /career pdf       → PDF only, ATS-optimized CV
@@ -76,7 +76,7 @@ After determining the mode, load the necessary files before executing:
 ### Modes that require `_shared.md` + their mode file:
 Read `modes/_shared.md` + `modes/{mode}.md`
 
-Applies to: `auto-pipeline`, `oferta`, `ofertas`, `pdf`, `contacto`, `apply`, `pipeline`, `scan`, `batch`
+Applies to: `auto-pipeline`, `eval`, `evals`, `pdf`, `contacto`, `apply`, `pipeline`, `scan`, `batch`
 
 ### Standalone modes (only their mode file):
 Read `modes/{mode}.md`

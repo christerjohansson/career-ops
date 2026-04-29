@@ -1,0 +1,49 @@
+# Job: Senior Systemutvecklare (React) at Soros Consulting
+# Source: Manual entry from job description
+# Date: 2026-04-28
+
+company: Soros Consulting
+role: Senior Systemutvecklare (React)
+location: Stockholm (hybrid, ca 50% på plats)
+description: |
+  Nu söker vi en erfaren systemutvecklare som vill ta en nyckelroll i ett samhällskritiskt utvecklingsprogram med fokus på digitalisering och framtidens energisystem. Här får du möjlighet att kombinera tekniskt djup med ledarskap i ett agilt team – och bidra till lösningar som gör verklig skillnad.
+
+  Om uppdraget
+  Du blir en del av ett större program i genomförandefas där fokus ligger på att utveckla, modernisera och förvalta systemlösningar kopplade till styrning och analys. Uppdraget sker i ett agilt team där du både utvecklar själv och bidrar till att lyfta teamets arbetssätt och leveransförmåga.
+
+  Teknikstacken är modern och inkluderar bland annat TypeScript, React, GraphQL och molnplattformar, och du kommer arbeta i nära samarbete med roller som arkitekt, produktägare, testare och kravanalytiker.
+
+  Arbetsuppgifter
+
+  Designa och utveckla systemlösningar (främst frontend men även backend)
+  Tolka arkitektur, säkerhet och tekniska riktlinjer
+  Bidra till och förbättra agila arbetssätt (Scrum)
+  Coacha och stötta teamet i utvecklingsprocesser
+  Arbeta med CI/CD, pipelines och automatiserade tester
+  Ta fram och förvalta teknisk dokumentation
+  Hantera incidenter, felsökning och löpande förvaltning
+  Vi söker dig som har:
+
+  Högskole-/universitetsutbildning inom IT eller motsvarande erfarenhet
+  Minst 10 års erfarenhet av frontendutveckling
+  Minst 5 års erfarenhet av React & TypeScript
+  Erfarenhet av arbete i agila team och Scrum (inkl. coachande roll)
+  Erfarenhet av molnplattformar (AWS, Azure eller GCP)
+  Erfarenhet av CI/CD och automatiserade tester
+  Erfarenhet av minst ett backend-språk
+  Erfarenhet av avancerad datavisualisering (t.ex. D3.js eller Highcharts)
+  Mycket god kommunikativ förmåga på svenska och engelska
+  Meriterande
+
+  Erfarenhet från energibranschen eller annan samhällskritisk verksamhet
+  Erfarenhet av Docker och containerplattformar
+  Erfarenhet av bibliotek som Highcharts eller Zod
+uppdragsinformation:
+  omfattning: Heltid
+  plats: Stockholm (hybrid, ca 50% på plats)
+  säkerhetsprövning: Krävs
+url: https://sorosconsulting.se
+source: manual_entry
+score: 4.7/5
+archetype: Senior AI/Frontend Engineer
+legacy_id: 30955801
