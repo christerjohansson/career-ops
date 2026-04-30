@@ -1,0 +1,22 @@
+title: "AI Solution Architect"
+company: "SAAB"
+client_slug: "saab-goteborg"
+requirements:
+  - "3-7 years in AI, ML, or software engineering"
+  - "Bachelor's in CS, Data Science, or related field"
+  - "Strong Python skills"
+  - "Generative AI experience (RAG, LLM, Hugging Face, LangChain)"
+  - "Vector databases"
+  - "Full solution lifecycle ownership"
+  - "Clear communication to non-technical stakeholders"
+  - "Project management abilities"
+  - "AWS or Azure cloud AI services"
+  - "Spark or Kafka for large-scale data processing"
+nice_to_haves: []
+archetype: "AI Solutions Architect"
+budget_range: "Not specified"
+clearance_required: []
+visa_required: true
+domain: "AI/ML"
+description_raw: "Lead end-to-end AI solutions from requirements to deployment. Leverage AWS/Azure for cloud AI. Process large-scale data with Spark/Kafka. Communicate AI architectures to technical and executive stakeholders. Collaborate with data/ML engineers and solution owners."
+status: open
