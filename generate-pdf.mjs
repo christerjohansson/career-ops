@@ -13,7 +13,7 @@
 import { chromium } from 'playwright';
 import { resolve, dirname } from 'path';
 import { readFile } from 'fs/promises';
-import { mkdirSync } from 'fs';
+import { mkdirSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -123,6 +123,25 @@ async function generatePDF() {
     /file:\/\/([^'")]+)\.(woff2?|ttf|otf)['"]?\)/g,
     `file://$1.$2')`
   );
+
+  // Embed images as base64 data URLs
+  const imgDir = resolve(dirname(inputPath));
+  const imgMatches = [...html.matchAll(/src="(img\/[^"]+)"/g)];
+  for (const match of imgMatches) {
+    const path = match[1];
+    const imgPath = resolve(imgDir, path);
+    if (existsSync(imgPath)) {
+      const imgData = await readFile(imgPath);
+      const base64 = imgData.toString('base64');
+      const ext = path.split('.').pop().toLowerCase();
+      const mimeType = ext === 'png' ? 'image/png' : ext === 'svg' ? 'image/svg+xml' : 'image/jpeg';
+      const dataUrl = `data:${mimeType};base64,${base64}`;
+      html = html.replace(match[0], `src="${dataUrl}"`);
+      console.log(`🖼️ Embedded: ${path} (${(imgData.length / 1024).toFixed(1)} KB)`);
+    } else {
+      console.log(`⚠️ Image not found: ${imgPath}`);
+    }
+  }
 
   // Normalize text for ATS compatibility (issue #1)
   const normalized = normalizeTextForATS(html);
