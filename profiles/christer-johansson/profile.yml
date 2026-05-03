@@ -132,4 +132,6 @@ location:
 language:
   native: "Swedish"
   professional: ["English"]
-  # modes_dir: "modes"  # Use "modes/de", "modes/fr", or "modes/ja" for localized modes
+  # UI language for modes/reports (use "modes" for English, "modes/es" for Spanish)
+  modes_dir: "modes"
+  report_lang: "en"
