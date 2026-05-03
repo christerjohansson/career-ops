@@ -8,6 +8,36 @@ The portfolio that goes with this system is also open source: [cv-santiago](http
 
 **It will work out of the box, but it's designed to be made yours.** If the archetypes don't match your career, the modes are in the wrong language, or the scoring doesn't fit your priorities -- just ask. You (AI Agent) can edit the user's files. The user says "change the archetypes to data engineering roles" and you do it. That's the whole point.
 
+## Git Commit Convention
+
+All commits MUST follow [Conventional Commits](https://www.conventionalcommits.org) specification:
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer]
+```
+
+**Types:**
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation only
+- `style`: Code style/formatting (no logic change)
+- `refactor`: Code refactoring (no feature/fix)
+- `perf`: Performance improvement
+- `test`: Adding/updating tests
+- `chore`: Maintenance, deps, build, tooling
+- `ci`: CI/CD changes
+
+**Rules:**
+- Use imperative mood: "add feature" not "added feature"
+- Lowercase type, no emoji
+- Max 50 chars for title
+- Body at 72 chars wrap
+- Reference issues: `Closes #123` or `Refs #456`
+
 ## Data Contract (CRITICAL)
 
 The system is now multi-profile. User data is split between a **Global Layer** and a **Profile Layer**.

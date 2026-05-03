@@ -1,33 +1,101 @@
+# Career-Ops Profile Template
+#
+# Copy this file to profiles/<your-name>/profile.yml and customize.
+# Remove personal data before pushing to public repositories.
+
 candidate:
-  full_name: "Name"
-  email: "email@example.com"
+  full_name: "Your Name"
+  email: "your.email@example.com"
+  phone: "+00 000 000 000"
   location: "City, Country"
-  linkedin: ""
-  github: ""
+  linkedin: "linkedin.com/in/yourprofile"
+  github: "github.com/yourusername"
+  portfolio_url: "https://yourportfolio.com"
 
 target_roles:
   primary:
-    - "Role 1"
+    - "Senior AI Engineer"
+    - "Staff Frontend Engineer"
+    - "AI Engineering Advisor"
+    - "Senior Technical Instructor"
+    - "Developer Advocate"
+
   archetypes:
-    - name: "Archetype 1"
-      level: "Senior"
+    - name: "Senior AI/Frontend Engineer"
+      level: "Senior/Staff"
       fit: "primary"
       track: "engineering"
-      sell_when: "JD says X"
+      sell_when: "JD emphasizes AI-powered development, React/Next.js/TypeScript, LLM integration, coaching teams on AI tooling"
+
+    - name: "Technical Instructor / Developer Advocate"
+      level: "Senior/Lead"
+      fit: "primary"
+      track: "teaching"
+      sell_when: "JD emphasizes curriculum development, university lectureship, developer advocacy, technical training"
 
 narrative:
-  headline: "One-line headline"
-  exit_story: "Why I am looking"
+  headline: "Senior AI engineer who teaches developers to ship better code faster -- XX years engineering, X,XXX+ teaching hours, XX% cycle time reduction, XX% defect rate cut"
+
+  exit_story: "Spent the last decade engineering at scale while simultaneously teaching and mentoring teams. Both tracks reinforce each other -- teaching forces me to write code people can actually understand, and production work keeps the curriculum grounded in reality."
+
   superpowers:
-    - "Skill 1"
+    - "AI-powered development adoption -- hands-on coaching that cuts cycle times and defect rates"
+    - "Ship production frontend systems (React, Next.js, TypeScript, Tailwind) with accessibility and performance"
+    - "Design and deliver technical curriculum that produces hireable engineers"
+    - "Explain complex technical concepts in plain language"
+    - "Build advisory boards and mentor teams from junior to CTO level"
+    - "Bridge engineering and education -- create internal docs and playbooks people actually use"
+
   proof_points:
-    - name: "Project 1"
-      hero_metric: "X% improvement"
+    - name: "AI Engineering Advisory Project"
+      url: ""
+      hero_metric: "Reduced cycle times XX%, defect rates XX%, generated significant pipeline from AI SDR"
+      track: "engineering"
+
+    - name: "Company Excellence Certification"
+      url: ""
+      hero_metric: "Senior Front End Developer certification for outstanding proficiency"
+      track: "engineering"
+
+    - name: "AI Platform Development"
+      url: ""
+      hero_metric: "XX,XXX+ user interactions, autonomous content processing, significant business impact"
+      track: "engineering"
+
+    - name: "University Technical Instruction"
+      url: ""
+      hero_metric: "X+ years lecturing, curriculum development, student industry placement"
+      track: "teaching"
+
+    - name: "Technical Publications"
+      url: ""
+      hero_metric: "Author of X technical books/courses on frontend development and AI"
+      track: "teaching"
 
 compensation:
-  target_range: "Currency Range"
-  currency: "Currency"
+  target_range: "XXX,XXX-XXX,XXX"  # Adjust for your currency/location
+  currency: "EUR/USD/SEK/etc"
+  minimum: "XXX,XXX"
+  location_flexibility: "Remote within region; willing to travel for on-site collaboration"
+
+  alternate_ranges:
+    - track: "teaching"
+      target_range: "XXX,XXX-XXX,XXX"
+      minimum: "XXX,XXX"
+      note: "Teaching/academic roles typically pay 20-30% less than engineering"
+
+    - track: "hybrid"
+      target_range: "XXX,XXX-XXX,XXX"
+      minimum: "XXX,XXX"
+      note: "DevRel and Developer Advocate roles"
 
 location:
-  country: "Country"
-  timezone: "UTC"
+  country: "Your Country"
+  city: "Your City"
+  timezone: "Your Timezone"
+  visa_status: "Your visa status"
+  onsite_availability: "Your onsite preferences"
+
+language:
+  native: "Your Native Language"
+  professional: ["English", "Other languages"]
